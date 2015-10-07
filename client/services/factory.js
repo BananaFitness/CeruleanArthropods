@@ -34,7 +34,7 @@ app.factory('appFactory', function($http) {
     //   })
 
     //Hard coded status
-    return false
+    return true
   }
 
   return {

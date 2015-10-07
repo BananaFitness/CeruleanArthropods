@@ -29,45 +29,30 @@
 
 </head>
 <body ng-app="eir" ng-controller='AppController'>
-
-  <nav ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" class="navbar navbar-default">
-    <div class="container-fluid navbar-fixed-top navbar-bg">
-
-      <div class="navbar-header">
-        <button type="button" ng-click="isCollapsed = !isCollapsed" class="navbar-toggle">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a href="#/home" class="navbar-brand">EIR</a>
-      </div>
-
-      <div ng-class="{'in':!navCollapsed}" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#/patients">PATIENTS</a></li>
-          <li><a href="#/get-funded">GET FUNDED</a></li>
-          <li><a href="#/about">DISCOVER EIR</a></li>
-          <li>
-            <div ng-switch on="loginStatus"> 
-              <div ng-switch-when="false">
-                <a href='/#/signup'>Signup</a> / <a href='/#/signin'>Signin</a>
-              </div>
-              <a ng-switch-when="true" href='/#/profile'>Profile</a>
-            </div>
-          </li><!-- 
-          <li><a href="#/profile">Profile</a></li>
-          <li><a href="#/signup">SIGNUP</a> / <a href="#/signin">LOGIN</a></li> -->
-        </ul>        
-      </div>
-      
+  <nav >
+    <div class="navbar-header">
+      <a href="#/home" class="navbar-brand">EIR</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="#/patients">PATIENTS</a></li>
+        <li><a href="#/get-funded">GET FUNDED</a></li>
+        <li><a href="#/about">DISCOVER EIR</a></li>
+      </ul>
+      <div ng-switch on="loginStatus"> 
+        <span ng-switch-when="false">
+          <a href='/#/signup'>SIGN UP</a> / <a href='/#/signin'>SIGN IN</a>
+        </span>
+        <a ng-switch-when="true" href='/#/profile'>PROFILE</a>
+      </div>        
     </div>
   </nav>
 
   
    <div ng-view></div>
 
-  <footer class="container-fluid footer" role="navigation">
-    <ul class="nav navbar-nav">
+  <footer class="container-fluid" role="navigation">
+    <ul class="nav navbar-nav footer">
           <li><a href="#/patients">PATIENTS</a></li>
           <li><a href="#/get-funded">GET FUNDED</a></li>
           <li><a href="#/about">ABOUT</a></li>
