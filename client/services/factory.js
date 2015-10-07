@@ -183,8 +183,7 @@ app.factory('authFactory', function ($http, $location, $window) {
   var signinFacebook = function () {
     return $http({
       method: 'GET',
-      url: '/auth/facebook/',
-      withCredentials:true
+      url: '/auth/facebook/'
     })
     .then(function (res) {
       return res.data.token;
