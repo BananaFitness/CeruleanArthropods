@@ -1,0 +1,106 @@
+{ 
+  "development": {
+
+    "facebook": {
+      "clientID"  : "1506397076352211",
+      "clientSecret"  : "d07694f29384b1940ce8f489b456dd60",
+      "callbackURL" : "http://localhost:3000/auth/facebook/callback",
+      "profileFields" : ["emails"]
+    },
+    "twitter": {
+      "authorizationURL": "",
+      "tokenURL"        : "",
+      "clientID"        : "",
+          "clientSecret"    : "",
+          "callbackURL"     : ""
+    },
+    "google": {
+      "clientID"  : "",
+          "clientSecret"  : "",
+          "callbackURL" : ""
+    },
+    "github": {
+      "clientID"  : "",
+      "clientSecret"  : "",
+      "callbackURL" : ""
+    },
+    "vimeo": {
+      "clientID"  : "",
+          "clientSecret"  : "",
+          "callbackURL" : ""
+    },
+    "instagram": {
+      "clientID"  : "",
+          "clientSecret"  : "",
+          "callbackURL" : ""
+    },
+    "linkedin": {
+      "clientID"  : "",
+          "clientSecret"  : "",
+          "callbackURL" : "",
+          "scope"   : []
+    },
+    "foursquare": {
+      "clientID"  : "",
+          "clientSecret"  : "",
+          "callbackURL" : ""
+    }, 
+    "reddit": {
+      "clientID"  : "",
+          "clientSecret"  : "",
+          "callbackURL" : ""
+    }
+  },
+
+  "production": {
+    
+    "facebook": {
+      "clientID"  : "",
+          "clientSecret"  : "",
+          "callbackURL" : ""
+    },
+    "twitter": {
+      "authorizationURL"  : "",
+      "tokenURL"    : "",
+      "clientID"    : "",
+          "clientSecret"    : "",
+          "callbackURL"   : ""
+    },
+    "google": {
+      "clientID"  : "",
+          "clientSecret"  : "",
+          "callbackURL" : ""
+    },
+    "github": {
+      "clientID"  : "",
+      "clientSecret"  : "",
+      "callbackURL" : ""
+    },
+    "vimeo": {
+      "clientID"  : "",
+          "clientSecret"  : "",
+          "callbackURL" : ""
+    },
+    "instagram": {
+      "clientID"  : "",
+          "clientSecret"  : "",
+          "callbackURL" : ""
+    },
+    "linkedin": {
+      "clientID"  : "",
+          "clientSecret"  : "",
+          "callbackURL" : "",
+          "scope"   : []
+    },
+    "foursquare": {
+      "clientID"  : "",
+          "clientSecret"  : "",
+          "callbackURL" : ""
+    }, 
+    "reddit": {
+      "clientID"  : "",
+          "clientSecret"  : "",
+          "callbackURL" : ""
+    }
+  }
+}

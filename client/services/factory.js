@@ -97,7 +97,7 @@ app.factory('patientsFactory', function ($http) {
   var getPatients = function() {
     return $http.get('/classes/patients')
       .then(function(res) {
-        return res.data
+        return res.data;
       })
       .catch(function(err) {
         console.log('ERROR getPatients: ' + err);
@@ -229,7 +229,7 @@ app.factory('authFactory', function ($http, $location, $window) {
   var signin = function (user) {
     return $http({
       method: 'POST',
-      url: '/classes/users/signin',
+      url: '/auth/local/',
       data: user
     })
     .then(function (res) {
@@ -249,9 +249,20 @@ app.factory('authFactory', function ($http, $location, $window) {
     });
   };
 
+  var signinFacebook = function () {
+    return $http({
+      method: 'GET',
+      url: '/auth/facebook/'
+    })
+    .then(function (res) {
+      console.log(res.data.token);
+      return res.data.token;
+    });
+  };
+
   var isAuth = function () {
     return !!$window.localStorage.getItem('com.eir');
-  }
+  };
 
   var signout = function () {
     $window.localStorage.removeItem('com.eir');
@@ -262,6 +273,7 @@ app.factory('authFactory', function ($http, $location, $window) {
     signin: signin,
     signup: signup,
     isAuth: isAuth,
-    signout: signout
+    signout: signout,
+    signinFacebook: signinFacebook
   }
 });

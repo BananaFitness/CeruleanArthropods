@@ -14,6 +14,17 @@ angular.module('eir.auth', [])
       });
   };
 
+  $scope.signinFacebook = function () {
+    authFactory.signinFacebook()
+      .then(function (token) {
+        $window.localStorage.setItem('com.eir', token);
+        $location.path('/patients');
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
   $scope.signup = function () {
     authFactory.signup($scope.user)
       .then(function (token) {

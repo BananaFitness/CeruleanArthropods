@@ -8,6 +8,7 @@ var app = angular.module('eir', [
   'eir.donate',
   'eir.thankYou',
   'eir.auth',
+  'eir.token',
   'ngRoute',
   'angularPayments'
 ]);
@@ -50,6 +51,10 @@ app.config(function($routeProvider, $httpProvider) {
       templateUrl: '/auth/signup.html',
       controller: 'authCtrl'
     })
+    .when('/jwt', {
+      templateUrl: '/auth/signup.html',
+      controller: 'tokenCtrl'
+    })
     .otherwise({
       redirectTo: '/home'
     });
@@ -58,35 +63,53 @@ app.config(function($routeProvider, $httpProvider) {
   $httpProvider.interceptors.push('AttachTokens');
 })
 
-app.factory('AttachTokens', function($window) {
-    var request = function(reqObject) {
-      var jwt = $window.localStorage.getItem('com.eir');
-      if (jwt) {
-        reqObject.headers['x-access-token'] = jwt;
-      }
-      reqObject.headers['Allow-Control-Allow-Origin'] = '*';
-      return reqObject;
-    };
+.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.useXDomain = true;
+    $httpProvider.defaults.withCredentials = true;
+    delete $httpProvider.defaults.headers.common["X-Requested-With"];
+    $httpProvider.defaults.headers.common["Accept"] = "application/json";
+    $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
+   }
+])
 
-    return {
-      request: request
-    };
-  })
-app.run(function($rootScope, $location, authFactory) {
-  $rootScope.$on('$routeChangeStart', function(evt, next, current) {
-    if (next.$$route && next.$$route.authenticate && !authFactory.isAuth()) {
+.factory('AttachTokens', function ($window, $location, $q) {
+  var request = function (reqObject) {
+    var jwt = $window.localStorage.getItem('com.eir');
+    if( jwt ) {
+      reqObject.headers['x-access-token'] = jwt;
+    }
+    reqObject.headers['Allow-Control-Allow-Origin'] = '*';
+    return reqObject;
+  };
+
+  var responseError = function(response) {
+        if(response.status === 401 || response.status === 403) {
+            $location.path('/signin');
+        }
+        return $q.reject(response);
+  };
+
+  return {
+    request: request,
+    responseError : responseError
+  };
+})
+
+.controller('AppController', function($scope, $location, appFactory) {
+  $scope.loginStatus = false;
+
+  $scope.getStatus = function() {
+    $scope.loginStatus = appFactory.getLoginStatus();
+  }
+
+  $scope.getStatus();
+  
+})
+
+.run(function ($rootScope, $location, authFactory) {
+  $rootScope.$on('$routeChangeStart', function (evt, next, current) {
+    if( next.$$route && next.$$route.authenticate && !authFactory.isAuth() ) {
       $location.path('/login');
     }
   });
-})
-
-app.controller('AppController', function($scope, $location, appFactory) {
-  $scope.loginStatus = false
-
-  $scope.getStatus = function() {
-    $scope.loginStatus = appFactory.getLoginStatus()
-  }
-
-  $scope.getStatus()
-  
 })

@@ -27,9 +27,16 @@ angular.module('eir.patients', [])
       });
   };
 
+  $scope.leftToFund = function() {
+    for(var i = 0; i < $scope.patients.length; i++) {
+      leftToFund = $scope.patients[i].goal - $scope.patients[i].progress
+      $scope.patients[i].leftToFund = leftToFund;
+    }
+  };
+
   patientsFactory.getPatients()
   .then(function(res){
-    $scope.patients = res;
+    $scope.patients = res || [];
     return res;
   })
   .then(function (res){
@@ -37,12 +44,5 @@ angular.module('eir.patients', [])
   })
   .then(function(res){
     $scope.leftToFund();
-  })
-
-  $scope.leftToFund = function() {
-    for(var i = 0; i < $scope.patients.length; i++) {
-      leftToFund = $scope.patients[i].goal - $scope.patients[i].progress
-      $scope.patients[i].leftToFund = leftToFund;
-    }
-  }
+  });
 });

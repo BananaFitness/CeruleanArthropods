@@ -33,7 +33,11 @@ CREATE TABLE IF NOT EXISTS tbl_patient_photos (
 CREATE TABLE IF NOT EXISTS tbl_users (
   id INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
   username VARCHAR(70) NOT NULL UNIQUE,
-  password VARCHAR(70) NOT NULL
+  password VARCHAR(70),
+  provider VARCHAR(70) NOT NULL DEFAULT "local",
+  token VARCHAR(255),
+  email VARCHAR(70),
+  profile_id VARCHAR(70)
 );
 
 CREATE TABLE IF NOT EXISTS tbl_donations (
