@@ -21,6 +21,63 @@ app.service('fileUpload', function($http) {
   }
 });
 
+app.factory('appFactory', function($http) {
+
+  var getLoginStatus = function() {
+    // return $http.get('/')
+    //   .then(function(res) {
+    //     //response needs to have some bool value that says
+    //     //if I am logged in. 
+    //   })
+    //   .catch(function(err) {
+    //     console.log('ERROR: ', err)
+    //   })
+
+    //Hard coded status
+    return true
+  }
+
+  return {
+    getLoginStatus: getLoginStatus
+  }
+});
+
+app.factory('profileFactory', function ($http) {
+
+  // GET req; 
+  var getProfileInfo = function() {
+    //Actual function. Hard coding returned user data for testing purposes
+    // return $http.get('/me')
+    //   .then(function(res) {
+    //     return res.data;
+    //   })
+    //   .catch(function(err) {
+    //     console.log(err);
+    //   });
+
+    //Hard coded user data
+    return {
+      firstName: 'Laura', 
+      lastName: 'Weaver', 
+      age: 25, 
+      location: 'San Francisco, CA',
+      photo: '../photos/testProfilePhoto.jpg',
+      username: 'lauraweaver', 
+      donations: [
+        {name: 'AIDS', amount: 100, image: '../photos/no-photo.png'}, 
+        {name: 'Cancer', amount: 100, image: '../photos/no-photo.png'}, 
+        {name: 'Heart transplant', amount: 100, image: '../photos/no-photo.png'}, 
+        {name: 'Malaria', amount: 100, image: '../photos/no-photo.png'}, 
+        {name: 'Famine', amount: 100, image: '../photos/no-photo.png'}
+      ]
+    }
+  };
+
+  return {
+    getProfileInfo: getProfileInfo
+  }
+
+});
 
 // this factory will hold all VERB requests relating to patients
 app.factory('patientsFactory', function ($http) {
@@ -71,6 +128,17 @@ app.factory('patientsFactory', function ($http) {
 
 app.factory('donorsFactory', function ($http) {
 
+  //POST req; this will send the Stripe response object to the server
+  var submitStripe = function (stripeObj) {
+    return $http.post('/classes/stripe/', stripeObj)
+      .then(function(res) {
+        return res.data;
+      })
+      .catch(function(err) {
+        console.log('ERROR donorsFactory.submitDonationForm: ' + err);
+      });
+  };
+
   // POST req; this will allow donors to make their donation
   var submitDonationForm = function (newDonation) {
     return $http.post('/classes/donations', newDonation)
@@ -114,7 +182,7 @@ app.factory('donorsFactory', function ($http) {
         return res.data
       })
       .catch(function(err) {
-        console.log('ERROR getDonor: ' + err);
+        console.log('ERROR submitStripe: ' + err);
       });
   };
 
@@ -122,7 +190,8 @@ app.factory('donorsFactory', function ($http) {
     submitDonationForm: submitDonationForm,
     updatePatientProgress: updatePatientProgress,
     getDonors: getDonors,
-    getDonor: getDonor
+    getDonor: getDonor,
+    submitStripe: submitStripe
   }
 
 });

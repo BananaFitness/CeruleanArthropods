@@ -27,6 +27,7 @@ module.exports = function(router){
           //user has authenticated correctly thus we create a JWT token
           var token = jwt.sign(jwtTokenBody, secret, { expiresIn: 60*60*5 });
           req.login(user, function(err){
+            console.log('redirecting', token);
             res.redirect('/#/jwt?token=' + token);
           });
 
