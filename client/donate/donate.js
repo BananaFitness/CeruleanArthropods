@@ -1,9 +1,33 @@
-angular.module('eir.donate', ['ngRoute'])
+angular.module('eir.donate', ['ngRoute', 'ui.bootstrap'])
 
-.controller('donateCtrl', function ($scope, patientsFactory, donorsFactory, $routeParams, conditionFactory) {
-
+.controller('donateCtrl', function($scope, patientsFactory, donorsFactory, $routeParams, conditionFactory, $modal, $log) {
+  // $scope.animationsEnabled = true;
   $scope.patient = {};
   $scope.donor = {};
+
+  // this opens the modal for donations/payments
+
+  // $scope.open = function(size) {
+
+  //   var modalInstance = $modal.open({
+  //     animation: $scope.animationsEnabled,
+  //     templateUrl: '/donatemodal.html',
+  //     controller: 'ModalCtrl',
+  //     size: size,
+  //     resolve: {
+  //       items: function() {
+  //         return $scope.items;
+  //       }
+  //     }
+  //   });
+
+  //   modalInstance.result.then(function(selectedItem) {
+  //     $scope.selected = selectedItem;
+  //   }, function() {
+  //     $log.info('Modal dismissed at: ' + new Date());
+  //   });
+
+  // };
 
   // this will allow you to display patient info on the donate page
 
@@ -12,18 +36,18 @@ angular.module('eir.donate', ['ngRoute'])
       .then(function(res) {
         $scope.patient = res[0];
         $scope.getConditionName();
-        
-        if($scope.patient.progress === 0) {
+
+        if ($scope.patient.progress === 0) {
           $scope.text = "Be the first to donate towards " + $scope.patient.first_name + "'s cause!";
         } else {
           $scope.text = "Let's reach " + $scope.patient.first_name + "'s goal!";
         }
 
-        $scope.decimalProgress = $scope.patient.progress/$scope.patient.goal;
-        $scope.percentProgress = Math.round(($scope.patient.progress/$scope.patient.goal)*100);
+        $scope.decimalProgress = $scope.patient.progress / $scope.patient.goal;
+        $scope.percentProgress = Math.round(($scope.patient.progress / $scope.patient.goal) * 100);
 
         $scope.progressBar();
-      
+
       })
       .catch(function(err) {
         console.log('ERROR patientsFactory.getPatient: ' + err);
@@ -35,14 +59,32 @@ angular.module('eir.donate', ['ngRoute'])
   // called after patient reocrd is returned. condtion is in a seperate table 
   $scope.getConditionName = function() {
     conditionFactory.getCondition($scope.patient.condition_id)
-      .then(function (res){
+      .then(function(res) {
         var conditionName = res[0].condition_name;
         $scope.patient.condition_name = conditionName;
       })
-      .catch(function (err){
+      .catch(function(err) {
         console.warn('Err donateCtrl - could not find condition name: ', err);
       });
   };
+
+  $scope.handleStripe = function(status, response) {
+    if (response.error) {
+      // there was an error. Fix it. 
+    } else {
+      // got stripe token, now charge it or smt 
+      var token = response.id;
+      console.log(token);
+      donorsFactory.submitStripe(response)
+        .then(function(res){
+          console.log(res);
+        });
+    }
+    //not capturing user info!!!
+    // $scope.handleSubmit($scope.doner);
+  };
+
+
 
   // on form submit, send the new donor info to the server; POST req
   $scope.handleSubmit = function(newDonor) {
@@ -81,19 +123,19 @@ angular.module('eir.donate', ['ngRoute'])
       text: {
         value: $scope.percentProgress + '% funded',
         style: {
-            // Text color.
-            // Default: same as stroke color (options.color)
-            color: '#f00',
-            position: 'relative',
-            left: '50%',
-            top: '-50%',
-            padding: 0,
-            // margin: auto,
-            // You can specify styles which will be browser prefixed
-            transform: {
-                prefix: true,
-                value: 'translate(-50%, -50%)'
-            }
+          // Text color.
+          // Default: same as stroke color (options.color)
+          color: '#f00',
+          position: 'relative',
+          left: '50%',
+          top: '-50%',
+          padding: 0,
+          // margin: auto,
+          // You can specify styles which will be browser prefixed
+          transform: {
+            prefix: true,
+            value: 'translate(-50%, -50%)'
+          }
         },
         // alignToBottom: true
       }
@@ -104,3 +146,14 @@ angular.module('eir.donate', ['ngRoute'])
   }
 
 });
+
+// .controller('ModalCtrl', function($scope, $modalInstance) {
+
+//   // $scope.ok = function () {
+//   //   $modalInstance.close($scope.selected.item);
+//   // };
+
+//   $scope.cancel = function() {
+//     $modalInstance.dismiss('cancel');
+//   };
+// });

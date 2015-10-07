@@ -3,11 +3,10 @@
     <h1>{{ patient.first_name }} has a condition called {{ patient.condition_name }} and appreciates your donation {{ donor.amount > 0 ? 'of $' + donor.amount : '' }}</h1>
   </div>
 </header>
-
 <div class="donate-wrapper row">
   <div class="col-md-6">
     <section class="donate-box">
-      <img class="patient-photo" ng-src="{{patient.photo_url}}" width="400px" height="400px"> 
+      <img class="patient-photo" ng-src="{{patient.photo_url}}" width="400px" height="400px">
     </section>
   </div>
   <div class="col-md-6">
@@ -23,13 +22,12 @@
 <div class="row">
   <div class="col-md-6">
     <section class="more-about-patient">
-      <h3>{{ patient.first_name }}'s Story</h3>
-      {{ patient.bio }}
+      <h3>{{ patient.first_name }}'s Story</h3> {{ patient.bio }}
     </section>
   </div>
   <div class="col-md-6">
     <section class="donate-box form-group">
-      <form ng-submit="handleSubmit(donor)" class="form-group checkout" novalidate>
+      <form stripe-form="handleStripe" name="myForm">
         <div class="checkout-header">
           <h1 class="checkout-title">
             Complete Your Donation
@@ -40,15 +38,40 @@
           <input type="text" ng-model="donor.donor_last_name" name="last_name" class="checkout-input checkout-name" placeholder="Last Name" autofocus>
           <input type="text" ng-model="donor.donor_email" name="email" class="checkout-input checkout-email" placeholder="Email Address" autofocus>
           <input type="number" ng-model="donor.amount" name="amount" class="checkout-input checkout-amount" placeholder="Donation Amount" autofocus>
-          <input type="text" ng-model="cc" name="cc" class="checkout-input checkout-card" placeholder="4111 1111 1111 1111">
-          <input type="text" ng-model="mm" name="mm" class="checkout-input checkout-exp" placeholder="MM">
-          <input type="text" ng-model="yy" name="yy" class="checkout-input checkout-exp" placeholder="YY">
-          <input type="text" ng-model="cvc" name="cvc" class="checkout-input checkout-cvc" placeholder="CVC">
+          <span class="payment-errors"></span>
+          <div class="form-row">
+            <label>
+              <span>Card Number</span>
+              <input type="text" class="input-block-level" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type" />
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              <span>CVC</span>
+              <input type="text" class="input-block-level" ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" />
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              <span>Expiration (MM/YYYY)</span>
+              <input type="text" class="input-block-level" ng-model="expiry" payments-validate="expiry" payments-format="expiry" />
+            </label>
+            <!-- <span> / </span>
+            <input type="text" size="4" data-stripe="exp-year" /> -->
+          </div>
         </p>
         <p>
-          <input type="submit" value="Donate" class="btn btn-default btn-block btn-primary">
+          <!-- stripe simple checkout implementation -->
+          <!-- <form action="" method="POST">
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_ryKUfWb7sBDEmXyCjfDHfUgy" data-amount="2000" data-name="Donation" data-description="($20.00)" data-image="/128x128.png" data-locale="auto">
+            </script>
+          </form> -->
+          <input type="submit" class="btn btn-default btn-block btn-primary">
         </p>
       </form>
     </section>
   </div>
 </div>
+<!-- <div>
+  <button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
+</div> -->

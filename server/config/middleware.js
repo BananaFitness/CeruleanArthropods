@@ -7,6 +7,7 @@ module.exports = function (app, express) {
   var donationRouter = express.Router();
   var conditionRouter = express.Router();
   var userRouter = express.Router();
+  var stripeRouter = express.Router();
   
   app.use('/classes/patients', patientRouter);
   require('../patients/patientRoutes')(patientRouter)
@@ -28,4 +29,6 @@ module.exports = function (app, express) {
 
   require('../users/userRoutes')(userRouter);
 
+  app.use('/classes/stripe', stripeRouter);
+  require('../stripe/stripeRoutes')(stripeRouter);
 }

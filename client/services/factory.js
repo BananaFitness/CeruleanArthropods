@@ -105,6 +105,17 @@ app.factory('patientsFactory', function ($http) {
 
 app.factory('donorsFactory', function ($http) {
 
+  //POST req; this will send the Stripe response object to the server
+  var submitStripe = function (stripeObj) {
+    return $http.post('/classes/stripe/', stripeObj)
+      .then(function(res) {
+        return res.data;
+      })
+      .catch(function(err) {
+        console.log('ERROR donorsFactory.submitDonationForm: ' + err);
+      });
+  };
+
   // POST req; this will allow donors to make their donation
   var submitDonationForm = function (newDonation) {
     return $http.post('/classes/donations', newDonation)
@@ -148,7 +159,7 @@ app.factory('donorsFactory', function ($http) {
         return res.data
       })
       .catch(function(err) {
-        console.log('ERROR getDonor: ' + err);
+        console.log('ERROR submitStripe: ' + err);
       });
   };
 
@@ -156,7 +167,8 @@ app.factory('donorsFactory', function ($http) {
     submitDonationForm: submitDonationForm,
     updatePatientProgress: updatePatientProgress,
     getDonors: getDonors,
-    getDonor: getDonor
+    getDonor: getDonor,
+    submitStripe: submitStripe
   }
 
 });
