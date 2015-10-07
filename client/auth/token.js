@@ -4,6 +4,6 @@ angular.module('eir.token', [])
   $scope.$on('$routeChangeSuccess', function(){
     var token = $routeParams.token;
     $window.localStorage.setItem('com.eir', token);
-    $location.path('/#/patients');
+    $location.path('/');
   });
 });
