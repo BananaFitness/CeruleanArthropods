@@ -1,5 +1,6 @@
 var app = angular.module('eir.factory', []);
 
+
 app.service('fileUpload', function($http) {
   return {
     uploadFileToUrl:function(fields, uploadUrl) {
@@ -20,6 +21,27 @@ app.service('fileUpload', function($http) {
   }
 });
 
+app.factory('appFactory', function($http) {
+
+  var getLoginStatus = function() {
+    // return $http.get('/')
+    //   .then(function(res) {
+    //     //response needs to have some bool value that says
+    //     //if I am logged in. 
+    //   })
+    //   .catch(function(err) {
+    //     console.log('ERROR: ', err)
+    //   })
+
+    //Hard coded status
+    return true
+  }
+
+  return {
+    getLoginStatus: getLoginStatus
+  }
+});
+
 app.factory('profileFactory', function ($http) {
 
   // GET req; 
@@ -32,6 +54,7 @@ app.factory('profileFactory', function ($http) {
     //   .catch(function(err) {
     //     console.log(err);
     //   });
+
     //Hard coded user data
     return {
       firstName: 'Laura', 
