@@ -12,7 +12,7 @@ module.exports = function (app, express) {
   var authRouter = express.Router();
 
   app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000/');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, X-AUTHENTICATION, X-IP, Content-Type, Accept');
     res.header('Access-Control-Allow-Credentials', true);
@@ -26,6 +26,12 @@ module.exports = function (app, express) {
 
 //Initailze passport
   app.use(passport.initialize());
+
+  app.use(function (req, res, next) {
+    console.log('==========================================');
+    console.log(req.method + ': ' + req.url);
+    next();
+  });
 
 //Routes traffic to their router and injects the router into its route file
   app.use('/classes/patients', authHelpers.checkUser, patientRouter);

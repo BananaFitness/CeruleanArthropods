@@ -27,7 +27,7 @@ module.exports = function(router){
           //user has authenticated correctly thus we create a JWT token
           var token = jwt.sign(jwtTokenBody, secret, { expiresIn: 60*60*5 });
           req.login(user, function(err){
-            return res.json({token: token});
+            res.redirect('/#/jwt?token=' + token);
           });
 
         })(req, res, next);
@@ -36,7 +36,7 @@ module.exports = function(router){
 
   router.post('/local', callBackFunctionGenerator('local'));
 
-  router.get('/facebook', passport.authenticate('facebook', {scope: 'email'}));
+  router.get('/facebook', passport.authenticate('facebook'));
   router.get('/facebook/callback', callBackFunctionGenerator('facebook'));
 
 };

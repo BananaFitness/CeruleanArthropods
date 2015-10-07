@@ -186,13 +186,14 @@ app.factory('authFactory', function ($http, $location, $window) {
       url: '/auth/facebook/'
     })
     .then(function (res) {
+      console.log(res.data.token);
       return res.data.token;
     });
   };
 
   var isAuth = function () {
     return !!$window.localStorage.getItem('com.eir');
-  }
+  };
 
   var signout = function () {
     $window.localStorage.removeItem('com.eir');

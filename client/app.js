@@ -8,6 +8,7 @@ var app = angular.module('eir', [
   'eir.donate',
   'eir.thankYou', 
   'eir.auth',
+  'eir.token',
   'ngRoute']
 );
 
@@ -49,6 +50,10 @@ app.config(function ($routeProvider, $httpProvider) {
     templateUrl: '/auth/signup.html',
     controller: 'authCtrl'
   })
+  .when('/jwt', {
+    templateUrl: '/auth/signup.html',
+    controller: 'tokenCtrl'
+  })
   .otherwise({ 
     redirectTo: '/home' 
   });
@@ -57,13 +62,24 @@ app.config(function ($routeProvider, $httpProvider) {
   $httpProvider.interceptors.push('AttachTokens');
 })
 
+.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.useXDomain = true;
+    $httpProvider.defaults.withCredentials = true;
+    delete $httpProvider.defaults.headers.common["X-Requested-With"];
+    $httpProvider.defaults.headers.common["Accept"] = "application/json";
+    $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
+   }
+])
+
 .factory('AttachTokens', function ($window, $location, $q) {
   var request = function (reqObject) {
     var jwt = $window.localStorage.getItem('com.eir');
     if( jwt ) {
+      console.log(jwt);
       reqObject.headers['x-access-token'] = jwt;
     }
     reqObject.headers['Allow-Control-Allow-Origin'] = '*';
+    console.log(reqObject);
     return reqObject;
   };
 
