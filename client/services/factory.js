@@ -40,7 +40,7 @@ app.factory('patientsFactory', function ($http) {
   var getPatients = function() {
     return $http.get('/classes/patients')
       .then(function(res) {
-        return res.data
+        return res.data;
       })
       .catch(function(err) {
         console.log('ERROR getPatients: ' + err);
@@ -160,7 +160,7 @@ app.factory('authFactory', function ($http, $location, $window) {
   var signin = function (user) {
     return $http({
       method: 'POST',
-      url: '/classes/users/signin',
+      url: '/auth/local/',
       data: user
     })
     .then(function (res) {

@@ -57,7 +57,7 @@ app.config(function ($routeProvider, $httpProvider) {
   $httpProvider.interceptors.push('AttachTokens');
 })
 
-.factory('AttachTokens', function ($window) {
+.factory('AttachTokens', function ($window, $location, $q) {
   var request = function (reqObject) {
     var jwt = $window.localStorage.getItem('com.eir');
     if( jwt ) {
@@ -67,8 +67,16 @@ app.config(function ($routeProvider, $httpProvider) {
     return reqObject;
   };
 
+  var responseError = function(response) {
+        if(response.status === 401 || response.status === 403) {
+            $location.path('/signin');
+        }
+        return $q.reject(response);
+  };
+
   return {
-    request: request
+    request: request,
+    responseError : responseError
   };
 })
 .run(function ($rootScope, $location, authFactory) {
