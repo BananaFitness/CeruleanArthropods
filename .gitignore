@@ -35,4 +35,5 @@ server/db/index.js
 
 server/uploads
 client/uploads
+server/auth/oauth-config.json
 

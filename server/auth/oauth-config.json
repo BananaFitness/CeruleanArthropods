@@ -2,8 +2,8 @@
   "development": {
 
     "facebook": {
-      "clientID"  : "1506397076352211",
-      "clientSecret"  : "d07694f29384b1940ce8f489b456dd60",
+      "clientID"  : "",
+      "clientSecret"  : "",
       "callbackURL" : "http://localhost:3000/auth/facebook/callback",
       "profileFields" : ["emails"]
     },
