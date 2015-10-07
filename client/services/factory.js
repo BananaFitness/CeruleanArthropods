@@ -180,6 +180,17 @@ app.factory('authFactory', function ($http, $location, $window) {
     });
   };
 
+  var signinFacebook = function () {
+    return $http({
+      method: 'GET',
+      url: '/auth/facebook/',
+      withCredentials:true
+    })
+    .then(function (res) {
+      return res.data.token;
+    });
+  };
+
   var isAuth = function () {
     return !!$window.localStorage.getItem('com.eir');
   }
@@ -193,6 +204,7 @@ app.factory('authFactory', function ($http, $location, $window) {
     signin: signin,
     signup: signup,
     isAuth: isAuth,
-    signout: signout
+    signout: signout,
+    signinFacebook: signinFacebook
   }
 });
