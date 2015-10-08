@@ -31,9 +31,9 @@
 
 <body ng-app="eir" ng-controller='AppController' style="padding-top: 50px;">
   <div class='container-fluid'>
-    <nav role='navigation' class="navbar navbar-default small navbar-fixed-top">
+    <nav role='navigation' class="navbar navbar-default small navbar-fixed-top" style="padding-right:25px">
       <div class="navbar-header">
-        <a href="#/home" class="navbar-brand">EIR</a>
+        <a href="#/home" class="navbar-brand" style="font-size:300%;">EIR</a>
       </div>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#discover">DISCOVER EIR</a></li> <!-- Scrolls to the globe -->
@@ -48,27 +48,32 @@
         </ul>
     </nav>
     <div id="home" class='container-fluid'>
-      <div class="hero-unit" style="height: 140px;">
-        <div class='row heroRow'>
-          <h2>You're Maybe Not A Doctor But You Can Save Lives</h2>
+      <div class="hero-unit" style="height: 500px; background-image:url(./photos/frontPhoto.jpg); background-size:cover">
+        <div class='row heroRow' style='padding-top: 250px'>
+          <h1 style='color: white; text-align: center'>You Might Not Be A Doctor But</h1>
+          <h1 style='color: white; font-size:600%; text-align: center'>YOU CAN SAVE LIVES</h1>
         </div>
-        <div class='row learnMoreRow'>
+        <!-- <div class='row learnMoreRow'>
           <a href='#discover' class='learnmore scroll hidden-xs'>DISCOVER</a>
           <br>
           <a href="#discover" class='learnmore scroll'>
             <i class='scroll-arrow fa fa-chevron-down animated infinite fadeInDown'>
             </i>
           </a>
-        </div>
-      </div>
-      <section id='discover' class='row'>
-        <canvas planetary width='1000' height='500'></canvas>
-      <!--   <div class="col-md-5 col-md-offset-1">
-          <h4>Tip the Axis of Global Health</h4>
-          <p>
-            FillerFillerFillerFillerFillerFillerFillerFillerFillerFillerFillerFiller
-          </p>
         </div> -->
+      </div>
+      <section id='discover' class='container-fluid'>
+        <div class="hero-unit" style="height: 500px; background-color: #F8F8F8; border-bottom: thin solid #E8E8E8">
+          <div style='background-color: #F8F8F8; padding-top:50px; padding-left:50px;'>
+            <canvas planetary width='800' height='400'></canvas>
+          </div>
+          <!-- <div class="col-md-4 col-md-offset-1">
+            <h4>Tip the Axis of Global Health</h4>
+            <p>
+              FillerFillerFillerFillerFillerFillerFillerFillerFillerFillerFillerFiller
+            </p>
+          </div> -->
+        </div>
       </section>
       <section id='impact' class='row'>
         <div class="hero-unit" style="height: 140px;" style='margin:auto;'>
@@ -81,12 +86,12 @@
 
     <div ng-view></div>
 
-    <footer class='footer-space'>
-      <ul class="nav navbar-nav footer">
-            <li><a href="#/patients">PATIENTS</a></li>
-            <li><a href="#/get-funded">GET FUNDED</a></li>
-            <li><a href="#/about">ABOUT</a></li>
-      </ul>
+    <footer>
+      <div class="container">
+        <a href="#/patients">PATIENTS</a>
+        <a href="#/get-funded">GET FUNDED</a>
+        <a href="#/about">ABOUT</a>
+      </div>
     </footer>
 
     <!-- Main app JS files -->

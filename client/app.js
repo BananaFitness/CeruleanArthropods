@@ -131,14 +131,19 @@ app.directive('planetary', function() {
 
       planet.loadPlugin(planetaryjs.plugins.earth({
         topojson: { file:   '/world-110m.json' },
-        oceans:   { fill:   '#001320' },
-        land:     { fill:   '#06304e' },
-        borders:  { stroke: '#001320' }
+        oceans:   { fill:   '#4B566B' },
+        land:     { fill:   '#B2CCFF' },
+        borders:  { stroke: '#4B566B' }
       }));
-      planet.loadPlugin(planetaryjs.plugins.pings());
+
+      planetaryjs.plugins.pings({
+        color: 'red', ttl: 5000, angle: 10
+      });
+
       planet.loadPlugin(planetaryjs.plugins.zoom({
-        scaleExtent: [50, 5000]
+        scaleExtent: [50, 2000]
       }));
+
       planet.loadPlugin(planetaryjs.plugins.drag({
         onDragStart: function() {
           this.plugins.autorotate.pause();
@@ -147,38 +152,14 @@ app.directive('planetary', function() {
           this.plugins.autorotate.resume();
         }
       }));
+
       planet.loadPlugin(autorotate(5));
+
       planet.projection.rotate([100, -10, 0]);
+
+      //Draws in the DOM canvas element
       var canvas = element[0];
       planet.draw(canvas);
-
-
-      // Create a color scale for the various earthquake magnitudes; the
-      // minimum magnitude in our data set is 2.5.
-      var colors = d3.scale.pow()
-        .exponent(3)
-        .domain([2, 4, 6, 8, 10])
-          .range(['white', 'yellow', 'orange', 'red', 'purple']);
-      // Also create a scale for mapping magnitudes to ping angle sizes
-      var angles = d3.scale.pow()
-        .exponent(3)
-        .domain([2.5, 10])
-        .range([0.5, 15]);
-      // And finally, a scale for mapping magnitudes to ping TTLs
-      var ttls = d3.scale.pow()
-        .exponent(3)
-        .domain([2.5, 10])
-        .range([2000, 5000]);
-
-      // Create a key to show the magnitudes and their colors
-      d3.select('#magnitudes').selectAll('li')
-        .data(colors.ticks(9))
-      .enter()
-        .append('li')
-        .style('color', colors)
-        .text(function(d) {
-          return "Magnitude " + d;
-        });
     }
   }
 })
