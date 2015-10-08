@@ -1,4 +1,4 @@
-var stripe = require("stripe")("sk_test_kUZx8GbhTLwOQsvu0Tou6py8");
+var stripe = require("stripe")("key");
 
 module.exports = function(router) {
 
