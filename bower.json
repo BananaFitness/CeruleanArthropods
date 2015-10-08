@@ -17,6 +17,7 @@
     "underscore": "~1.8.3",
     "bootstrap": "~3.3.5",
     "angular-bootstrap": "~0.13.4",
-    "progressbar.js": "~0.9.0"
+    "progressbar.js": "~0.9.0",
+    "planetary.js": "~1.1.1"
   }
 }

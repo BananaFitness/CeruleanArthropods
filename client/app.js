@@ -10,26 +10,19 @@ var app = angular.module('eir', [
   'eir.auth',
   'eir.token',
   'ngRoute',
-  'angularPayments'
+  'angularPayments',
+  'duParallax'
 ]);
 
 app.config(function($routeProvider, $httpProvider) {
   $routeProvider
     .when('/home', {
-      templateUrl: '/home/home.html',
+      templateUrl: '/index.html',
       controller: 'AppController'
-    })
-    .when('/about', {
-      templateUrl: '/about/about.html',
-      controller: 'aboutCtrl'
     })
     .when('/patients', {
       templateUrl: '/patients/patients.html',
       controller: 'patientsCtrl'
-    })
-    .when('/get-funded', {
-      templateUrl: '/patients/get-funded.html',
-      controller: 'getFundedCtrl'
     })
     .when('/profile', {
       templateUrl: '/profile/profile.html',
@@ -38,10 +31,6 @@ app.config(function($routeProvider, $httpProvider) {
     .when('/donate/:id', {
       templateUrl: '/donate/donate.html',
       controller: 'donateCtrl'
-    })
-    .when('/thank-you', {
-      templateUrl: '/thank-you.html',
-      controller: 'thankYouCtrl'
     })
     .when('/signin', {
       templateUrl: '/auth/signin.html',
@@ -95,11 +84,18 @@ app.config(function($routeProvider, $httpProvider) {
   };
 })
 
-app.controller('AppController', function($scope, $location, appFactory) {
+app.controller('AppController', function($scope, $location, $anchorScroll, appFactory, parallaxHelper) {
+  $scope.background = parallaxHelper.createAnimator(-0.3);
+
   $scope.loginStatus = false;
 
   $scope.getStatus = function() {
     $scope.loginStatus = appFactory.getLoginStatus();
+  }
+
+  $scope.scrollTo = function(id) {
+    $location.hash(id);
+    $anchorScroll();
   }
 
   $scope.getStatus();
