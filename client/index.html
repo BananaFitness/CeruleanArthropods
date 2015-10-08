@@ -1,79 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-
-
   <link rel="stylesheet" href="styles.css" type="text/css">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" type="text/css">
   <!-- Bower dependencies -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/underscore/underscore.js"></script> 
+  <script src="bower_components/underscore/underscore.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
   <script src="bower_components/angular-mocks/angular-mocks.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script> 
+  <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/progressbar.js/dist/progressbar.js"></script>
-
   <!-- Stripe -->
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   <script type="text/javascript">
-  Stripe.setPublishableKey('secret');
+  Stripe.setPublishableKey('key');
   </script>
   <script src="AngularPayments/angular-payments/lib/angular-payments.min.js"></script>
-
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Eir</title>
-
-
 </head>
+
 <body ng-app="eir" ng-controller='AppController'>
-  <nav >
-    <div class="navbar-header">
-      <a href="#/home" class="navbar-brand">EIR</a>
-    </div>
-    <div>
-      <ul class="nav navbar-nav">
-        <li><a href="#/patients">PATIENTS</a></li>
-        <li><a href="#/get-funded">GET FUNDED</a></li>
-        <li><a href="#/about">DISCOVER EIR</a></li>
-      </ul>
-      <div ng-switch on="loginStatus"> 
-        <span ng-switch-when="true">
-          <a href='/#/signup'>SIGN UP</a> / <a href='/#/signin'>SIGN IN</a>
-        </span>
-        <a ng-switch-when="true" href='/#/profile'>PROFILE</a>
-      </div>  
-      <li><a href="#/home" ng-controller="authCtrl" ng-click="signout()">LOGOUT</a></li>      
-    </div>
-  </nav>
-
-  
-   <div ng-view></div>
-
-  <footer class="container-fluid" role="navigation">
-    <ul class="nav navbar-nav footer">
+  <div class="container-fluid">
+    <nav>
+      <div class="navbar-header">
+        <a href="#/home" class="navbar-brand">EIR</a>
+      </div>
+      <div>
+        <ul class="nav navbar-nav">
           <li><a href="#/patients">PATIENTS</a></li>
           <li><a href="#/get-funded">GET FUNDED</a></li>
-          <li><a href="#/about">ABOUT</a></li>
-    </ul>
-  </footer>
-
-  <!-- Main app JS files -->
-  <script src="services/factory.js"></script>
-  <script src="home/home.js"></script>
-  <script src="about/about.js"></script>
-  <script src="patients/patients.js"></script>
-  <script src="patients/get-funded.js"></script>
-  <script src="profile/profile.js"></script>
-  <script src="donate/donate.js"></script>
-  <script src="thank-you.js"></script>
-  <script src="auth/auth.js"></script>
-  <script src="auth/token.js"></script>
-  <script src="app.js"></script>
-  
+          <li><a href="#/about">DISCOVER EIR</a></li>
+        </ul>
+        <div ng-switch on="loginStatus">
+          <span ng-switch-when="true">
+          <a href='/#/signup'>SIGN UP</a> / <a href='/#/signin'>SIGN IN</a>
+        </span>
+          <a ng-switch-when="true" href='/#/profile'>PROFILE</a>
+        </div>
+        <li><a href="#/home" ng-controller="authCtrl" ng-click="signout()">LOGOUT</a></li>
+      </div>
+    </nav>
+    <div ng-view></div>
+    <footer class="container-fluid" role="navigation">
+      <ul class="nav navbar-nav footer">
+        <li><a href="#/patients">PATIENTS</a></li>
+        <li><a href="#/get-funded">GET FUNDED</a></li>
+        <li><a href="#/about">ABOUT</a></li>
+      </ul>
+    </footer>
+    <!-- Main app JS files -->
+    <script src="services/factory.js"></script>
+    <script src="home/home.js"></script>
+    <script src="about/about.js"></script>
+    <script src="patients/patients.js"></script>
+    <script src="patients/get-funded.js"></script>
+    <script src="profile/profile.js"></script>
+    <script src="donate/donate.js"></script>
+    <script src="thank-you.js"></script>
+    <script src="auth/auth.js"></script>
+    <script src="auth/token.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
-
-

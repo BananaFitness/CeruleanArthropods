@@ -1,4 +1,4 @@
-var stripe = require("stripe")("secret");
+var stripe = require("stripe")("key");
 
 module.exports = function(router) {
 
