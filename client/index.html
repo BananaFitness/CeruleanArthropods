@@ -4,7 +4,6 @@
 <head>
   <link rel="stylesheet" href="styles.css" type="text/css">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" type="text/css">
-
   <!-- Bower dependencies -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/underscore/underscore.js"></script>
@@ -16,7 +15,6 @@
   <script src='http://d3js.org/d3.v3.min.js'></script>
   <script src='http://d3js.org/topojson.v1.min.js'></script>
   <script src='bower_components/planetary.js/dist/planetaryjs.min.js'></script>
-
   <!-- Stripe -->
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   <script type="text/javascript">
@@ -35,17 +33,20 @@
       <div class="navbar-header">
         <a href="#/home" class="navbar-brand" style="font-size:300%;">EIR</a>
       </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#discover">DISCOVER EIR</a></li> <!-- Scrolls to the globe -->
-          <li><a href="#statistics">IMPACT</a></li> <!-- Scrolls to the stats -->
-          <li><a href="#patients">PATIENTS</a></li> <!-- Scrolls to the feed -->
-          <li><a href="#/get-funded">GET FUNDED</a></li>
-          <li ng-switch on="loginStatus"> 
-            <a ng-switch-when="false" href='/#/signup'>SIGN UP</a>
-            <a ng-switch-when="false" href='/#/signin'>SIGN IN</a>
-            <a ng-switch-when="true" href='/#/profile'>PROFILE</a>
-          </li>        
-        </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#discover">DISCOVER EIR</a></li>
+        <!-- Scrolls to the globe -->
+        <li><a href="#statistics">IMPACT</a></li>
+        <!-- Scrolls to the stats -->
+        <li><a href="#patients">PATIENTS</a></li>
+        <!-- Scrolls to the feed -->
+        <li><a href="#/get-funded">GET FUNDED</a></li>
+        <li ng-switch on="loginStatus">
+          <a ng-switch-when="false" href='/#/signup'>SIGN UP</a>
+          <a ng-switch-when="false" href='/#/signin'>SIGN IN</a>
+          <a ng-switch-when="true" href='/#/profile'>PROFILE</a>
+        </li>
+      </ul>
     </nav>
     <div id="home" class='container-fluid'>
       <div class="hero-unit" style="height: 500px; background-image:url(./photos/frontPhoto.jpg); background-size:cover">
@@ -83,9 +84,7 @@
       </section>
       <section id='patients' class='row'></section>
     </div>
-
     <div ng-view></div>
-
     <footer>
       <div class="container">
         <a href="#/patients">PATIENTS</a>
@@ -93,7 +92,6 @@
         <a href="#/about">ABOUT</a>
       </div>
     </footer>
-
     <!-- Main app JS files -->
     <script src="services/factory.js"></script>
     <script src="home/home.js"></script>

@@ -25,45 +25,51 @@
 </div> -->
   <!-- ============ payment form ============= -->
   <div class="col-md-4">
-    <section class="Card donate-wrapper donate-box">
-      <figure class="CardFront checkout">
-        <section class="form-group">
-          <form stripe-form="handleStripe" name="myForm">
-            <div class="checkout-header">
-              <h1 class="checkout-title">
-            Donate and help {{ patient.first_name }} today
-          </h1>
-            </div>
-            <div class="row">
-            <div class="various-cards">
-              <img class="visa cardImg" src="http://ivanthevariable.com/misc/codepen-credit-card/visa.jpg" />
-              <img class="discover cardImg" src="http://ivanthevariable.com/misc/codepen-credit-card/discover.jpg" />
-              <img class="mastercard cardImg" src="http://ivanthevariable.com/misc/codepen-credit-card/mastercard.jpg" />
-              <img class="amex cardImg" src="http://ivanthevariable.com/misc/codepen-credit-card/amex.jpg" />
-            </div>
-            </div>
-            <br class="clear" />
-            <div class="row">
-              <input type="text" ng-model="donor.donor_first_name" name="first_name" class="checkout-input checkout-name" placeholder="First Name" autofocus>
-              <input type="text" ng-model="donor.donor_last_name" name="last_name" class="checkout-input checkout-name" placeholder="Last Name" autofocus>
-            </div>
-            <br class="clear" />
-            <div class="row">
-              <input type="text" ng-model="donor.donor_email" name="email" class="checkout-input checkout-email" placeholder="Email Address" autofocus>
-              <input type="number" ng-model="donor.amount" name="amount" class="checkout-input checkout-amount" placeholder="Donation Amount" autofocus>
-              <span class="payment-errors"></span>
-            </div>
-            <br class="clear" />
-            <input type="text" class="checkout-input checkout-card" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type" placeholder="Card Number" />
-            <input type="text" class="checkout-input checkout-cvc" ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" placeholder="CVC" />
-            <input type="text" class="checkout-input checkout-expiry" ng-model="expiry" payments-validate="expiry" payments-format="expiry" placeholder="Exp Date" />
-            <br class="clear" />
-            <br class="clear" />
-            <br class="clear" />
-            <button type="submit" class="checkout-btn">SUBMIT</button>
-          </form>
-        </section>
-      </figure>
+    <section class="donate-wrapper donate-box">
+      <div class="Card" ng-class="donated ? 'flipped' : ''">
+        <figure class="CardFront checkout">
+          <section class="form-group">
+            <form stripe-form="handleStripe" name="myForm">
+              <div class="checkout-header">
+                <h1 class="checkout-title">
+            Donate and Help Today
+              </h1>
+              </div>
+              <div class="row">
+                <div class="various-cards">
+                  <img class="visa cardImg" ng-class="type === 'visa' ? 'active' : ''" src="http://ivanthevariable.com/misc/codepen-credit-card/visa.jpg" />
+                  <img class="discover cardImg" ng-class="type === 'discover' ? 'active' : ''" src="http://ivanthevariable.com/misc/codepen-credit-card/discover.jpg" />
+                  <img class="mastercard cardImg" ng-class="type === 'mastercard' ? 'active' : ''" src="http://ivanthevariable.com/misc/codepen-credit-card/mastercard.jpg" />
+                  <img class="amex cardImg" ng-class="type === 'amex' ? 'active' : ''" src="http://ivanthevariable.com/misc/codepen-credit-card/amex.jpg" />
+                </div>
+              </div>
+              <br class="clear" />
+              <div class="row">
+                <input type="text" ng-model="donor.donor_first_name" name="first_name" class="checkout-input checkout-name" placeholder="First Name" autofocus>
+                <input type="text" ng-model="donor.donor_last_name" name="last_name" class="checkout-input checkout-name" placeholder="Last Name" autofocus>
+              </div>
+              <br class="clear" />
+              <div class="row">
+                <input type="text" ng-model="donor.donor_email" name="email" class="checkout-input checkout-email" placeholder="Email Address" autofocus>
+                <input type="number" ng-model="donor.amount" name="amount" class="checkout-input checkout-amount" placeholder="Donation Amount" autofocus>
+                <span class="payment-errors"></span>
+              </div>
+              <br class="clear" />
+              <input type="text" class="checkout-input checkout-card" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type" placeholder="Card Number" />
+              <input type="text" class="checkout-input checkout-exp" ng-model="expiry" payments-validate="expiry" payments-format="expiry" placeholder="Exp Date" />
+              <input type="text" class="checkout-input checkout-cvc" ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" placeholder="CVC" />
+              <!-- <span class="tooltip">What's this?</span><span class="help">Lorem ipsum dolor sit ame</span> -->
+              <br class="clear" />
+              <br class="clear" />
+              <br class="clear" />
+              <button type="submit" class="checkout-btn">SUBMIT</button>
+            </form>
+          </section>
+        </figure>
+        <figure class="CardBack checkout">
+          <h3 class="thanks">Thank you!</h3>
+        </figure>
+      </div>
     </section>
   </div>
 </div>
