@@ -24,35 +24,63 @@
   <title>Eir</title>
 </head>
 
-<body ng-app="eir" ng-controller='AppController'>
-  <div class="container-fluid">
-    <nav>
+<body ng-app="eir" ng-controller='AppController' style="padding-top: 50px;">
+  <div class='container'>
+    <nav role='navigation' class="navbar navbar-default small navbar-fixed-top">
       <div class="navbar-header">
         <a href="#/home" class="navbar-brand">EIR</a>
       </div>
-      <div>
-        <ul class="nav navbar-nav">
-          <li><a href="#/patients">PATIENTS</a></li>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#discover">DISCOVER EIR</a></li> <!-- Scrolls to the globe -->
+          <li><a href="#statistics">IMPACT</a></li> <!-- Scrolls to the stats -->
+          <li><a href="#patients">PATIENTS</a></li> <!-- Scrolls to the feed -->
           <li><a href="#/get-funded">GET FUNDED</a></li>
-          <li><a href="#/about">DISCOVER EIR</a></li>
+          <li ng-switch on="loginStatus"> 
+            <a ng-switch-when="false" href='/#/signup'>SIGN UP</a>
+            <a ng-switch-when="false" href='/#/signin'>SIGN IN</a>
+            <a ng-switch-when="true" href='/#/profile'>PROFILE</a>
+          </li>        
         </ul>
-        <div ng-switch on="loginStatus">
-          <span ng-switch-when="true">
-          <a href='/#/signup'>SIGN UP</a> / <a href='/#/signin'>SIGN IN</a>
-        </span>
-          <a ng-switch-when="true" href='/#/profile'>PROFILE</a>
-        </div>
-        <li><a href="#/home" ng-controller="authCtrl" ng-click="signout()">LOGOUT</a></li>
-      </div>
     </nav>
+    <div id="home" class='container-fluid'>
+      <div class="hero-unit" style="height: 140px;">
+        <div class='row heroRow'>
+          <h2>You're Maybe Not A Doctor But You Can Save Lives</h2>
+        </div>
+        <div class='row learnMoreRow'>
+          <a href='#discover' class='learnmore scroll hidden-xs'>DISCOVER</a>
+          <br>
+          <a href="#discover" class='learnmore scroll'>
+            <i class='scroll-arrow fa fa-chevron-down animated infinite fadeInDown'>
+            </i>
+          </a>
+        </div>
+      </div>
+      <section id='discover' class='row'>
+        <div class="col-md-4 col-md-offset-1">
+          <img src="/photos/no-photo.png" class="img-responsive logo">
+        </div>
+        <div class="col-md-5 col-md-offset-1">
+          <h4>Tip the Axis of Global Health</h4>
+          <p>
+            FillerFillerFillerFillerFillerFillerFillerFillerFillerFillerFillerFiller
+          </p>
+        </div>
+      </section>
+      <section id='impact' class='row'></section>
+      <section id='patients' class='row'></section>
+    </div>
+
     <div ng-view></div>
-    <footer class="container-fluid" role="navigation">
+
+    <footer class='footer-space'>
       <ul class="nav navbar-nav footer">
-        <li><a href="#/patients">PATIENTS</a></li>
-        <li><a href="#/get-funded">GET FUNDED</a></li>
-        <li><a href="#/about">ABOUT</a></li>
+            <li><a href="#/patients">PATIENTS</a></li>
+            <li><a href="#/get-funded">GET FUNDED</a></li>
+            <li><a href="#/about">ABOUT</a></li>
       </ul>
     </footer>
+
     <!-- Main app JS files -->
     <script src="services/factory.js"></script>
     <script src="home/home.js"></script>
@@ -65,6 +93,7 @@
     <script src="auth/auth.js"></script>
     <script src="auth/token.js"></script>
     <script src="app.js"></script>
+  </div>
 </body>
 
 </html>
