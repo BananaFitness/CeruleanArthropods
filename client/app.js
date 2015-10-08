@@ -10,7 +10,8 @@ var app = angular.module('eir', [
   'eir.auth',
   'eir.token',
   'ngRoute',
-  'angularPayments'
+  'angularPayments',
+  'angular-parallax'
 ]);
 
 app.config(function($routeProvider, $httpProvider) {
