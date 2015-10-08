@@ -36,8 +36,12 @@ CREATE TABLE IF NOT EXISTS tbl_users (
   password VARCHAR(70),
   provider VARCHAR(70) NOT NULL DEFAULT "local",
   token VARCHAR(255),
+  profile_id VARCHAR(70),
+  first_name VARCHAR(70) NOT NULL DEFAULT "Not Available",
+  last_name VARCHAR(70) NOT NULL DEFAULT "Not Available",
   email VARCHAR(70),
-  profile_id VARCHAR(70)
+  age INT(20),
+  location VARCHAR(100) NOT NULL DEFAULT "San Francisco, CA"
 );
 
 CREATE TABLE IF NOT EXISTS tbl_donations (

@@ -80,14 +80,17 @@ function StrategyGenerator (provider) {
                     newUser.id    = profile.id; // set the users [provider] id
                     newUser.token = accessToken; // we will save the token that [provider] provides to the user
                     newUser.username  = profile.displayName || profile.username 
-                                              || profile.name || profile.name.givenName || 'John Doe'
+                                              || profile.name || profile.name.givenName || 'John Doe';
+                    newUser.firstName = profile._json.first_name || '';
+                    newUser.lastName = profile._json.last_name || '';
+                    newUser.age = parseInt(profile._json.age_range.min);
                                               
                     if (profile.emails && profile.emails[0]) {
                         newUser.email = profile.emails[0].value; // [provider] can return multiple emails so we'll take the first    
                     }
                     // save our user to the database
-                    var sqlquery = "INSERT INTO tbl_users (username, password, provider, token, email, profile_id) VALUES (?,?,?,?,?,?)";
-                    db.query(sqlquery, [newUser.username, newUser.passowrd, newUser.provider, newUser.token, newUser.email, newUser.id], function(err) {
+                    var sqlquery = "INSERT INTO tbl_users (username, password, provider, token, email, profile_id, first_name, last_name, age) VALUES (?,?,?,?,?,?,?,?,?)";
+                    db.query(sqlquery, [newUser.username, newUser.passowrd, newUser.provider, newUser.token, newUser.email, newUser.id, newUser.firstName, newUser.lastName, newUser.age], function(err) {
                       if (err) {
                           return done(err);
                       }
