@@ -1,33 +1,13 @@
 angular.module('eir.donate', ['ngRoute', 'ui.bootstrap'])
 
-.controller('donateCtrl', function($scope, patientsFactory, donorsFactory, $routeParams, conditionFactory, $modal, $log) {
-  // $scope.animationsEnabled = true;
+.controller('donateCtrl', function($scope, patientsFactory, donorsFactory, $routeParams, conditionFactory) {
   $scope.patient = {};
   $scope.donor = {};
+  $scope.donated = false;
 
-  // this opens the modal for donations/payments
+  //controls which card shows in payments
 
-  // $scope.open = function(size) {
 
-  //   var modalInstance = $modal.open({
-  //     animation: $scope.animationsEnabled,
-  //     templateUrl: '/donatemodal.html',
-  //     controller: 'ModalCtrl',
-  //     size: size,
-  //     resolve: {
-  //       items: function() {
-  //         return $scope.items;
-  //       }
-  //     }
-  //   });
-
-  //   modalInstance.result.then(function(selectedItem) {
-  //     $scope.selected = selectedItem;
-  //   }, function() {
-  //     $log.info('Modal dismissed at: ' + new Date());
-  //   });
-
-  // };
 
   // this will allow you to display patient info on the donate page
 
@@ -69,9 +49,11 @@ angular.module('eir.donate', ['ngRoute', 'ui.bootstrap'])
   };
 
   $scope.handleStripe = function(status, response) {
+    $scope.donated = true; //remove in production
     if (response.error) {
       // there was an error. Fix it. 
     } else {
+      $scope.donated = true;
       // got stripe token, now charge it or smt 
       var token = response.id;
       console.log(token);
@@ -147,13 +129,3 @@ angular.module('eir.donate', ['ngRoute', 'ui.bootstrap'])
 
 });
 
-// .controller('ModalCtrl', function($scope, $modalInstance) {
-
-//   // $scope.ok = function () {
-//   //   $modalInstance.close($scope.selected.item);
-//   // };
-
-//   $scope.cancel = function() {
-//     $modalInstance.dismiss('cancel');
-//   };
-// });
