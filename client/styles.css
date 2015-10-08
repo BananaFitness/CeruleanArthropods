@@ -112,11 +112,11 @@ div.bio {
     margin: 0px;
     min-height: 100px;
     padding: 5px;
-    width: 80%;
+    width: 70%;
 }
 
 .checkout {
-    width: 80%;
+    width: 100%;
     margin: 50px auto;
     padding: 15px;
     background: #f3f6fa;
@@ -128,7 +128,7 @@ div.bio {
 }
 
 .Card {
-  width:80%;
+  width:75%;
   height:100%;
   position:absolute;
   -webkit-transition: -webkit-transform 1s;
@@ -150,12 +150,21 @@ div.bio {
     opacity: 1;
 }
 
+figure {
+  min-height: 360px;
+  display: block;
+  position: absolute;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+}
+
 .Card.flipped {
   -webkit-transform: rotateY(180deg);
 }
 
 .CardBack {
-
+  -webkit-transform: rotateY(180deg);
+  transform:rotateY(180deg);
 }
 
 .checkout > p {
@@ -273,7 +282,7 @@ input {
     margin-left: 0px;
 }
 
-.checkout-expiry{
+.checkout-exp{
     margin-left: 13.5px;
     width: 80px;
 }
@@ -281,6 +290,11 @@ input {
 .checkout-cvc {
     margin-left: 13.5px;
     width: 45px;
+}
+
+.thanks {
+  text-align: center;
+  vertical-align: center;
 }
 
 /*.help {
@@ -326,7 +340,7 @@ input {
     text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.2);
     border: 1px solid;
     border-color: #1486f9 #0f7de9 #0d6acf;
-    background: #1993fb;
+    background: #4B566B;
     border-radius: 4px;
     background-image: -webkit-linear-gradient(top, #4cb1fe, #229afc 40%, #138df6);
     background-image: -moz-linear-gradient(top, #4cb1fe, #229afc 40%, #138df6);

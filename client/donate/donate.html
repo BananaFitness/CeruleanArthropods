@@ -56,7 +56,7 @@
               </div>
               <br class="clear" />
               <input type="text" class="checkout-input checkout-card" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type" placeholder="Card Number" />
-              <input type="text" class="checkout-input checkout-expiry" ng-model="expiry" payments-validate="expiry" payments-format="expiry" placeholder="Exp Date" />
+              <input type="text" class="checkout-input checkout-exp" ng-model="expiry" payments-validate="expiry" payments-format="expiry" placeholder="Exp Date" />
               <input type="text" class="checkout-input checkout-cvc" ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" placeholder="CVC" />
               <!-- <span class="tooltip">What's this?</span><span class="help">Lorem ipsum dolor sit ame</span> -->
               <br class="clear" />
@@ -66,8 +66,8 @@
             </form>
           </section>
         </figure>
-        <figure class="CardBack">
-          <h3>{{ patient.first_name }} deeply appreciates your generous contribution</h3>
+        <figure class="CardBack checkout">
+          <h3 class="thanks">Thank you!</h3>
         </figure>
       </div>
     </section>
