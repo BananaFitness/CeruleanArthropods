@@ -1,13 +1,20 @@
 <!-- <header class="patient-header">
   <h1>{{ patient.first_name }} has a condition called {{ patient.condition_name }} and appreciates your donation {{ donor.amount > 0 ? 'of $' + donor.amount : '' }}</h1>
 </header> -->
-<div class="row">
+<div class="row" style="background-color: #E8E8E8">
   <div class="col-md-4">
     <section class="donate-box">
-      <img class="patient-photo" ng-src="{{patient.photo_url}}" width="400px" height="400px">
+      <img class="patient-photo" ng-src="{{patient.photo_url}}" width="400px" height="400px" style="margin: 50px; border-radius: 10px;">
     </section>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-8">
+    <section class="more-about-patient">
+      <h3>{{ patient.first_name }}'s Story</h3> {{ patient.bio }}
+    </section>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
     <section>
       <div class="patient-progress">
         <h4>{{thankYou}}</h4>
@@ -16,12 +23,8 @@
       </div>
     </section>
   </div>
-  <div class="col-md-4">
-    <section class="more-about-patient">
-      <h3>{{ patient.first_name }}'s Story</h3> {{ patient.bio }}
-    </section>
-    <a ui-sref="donate.charge">DONATE NOW!</a>
-  </div>
+<div class="col-md-6" style="height: 500px">
+  <a ui-sref="donate.charge">DONATE NOW!</a>
+  <div ui-view></div>
 </div>
-<div ui-view></div>
 <!-- place button to link to charge and pass patient info over, note that this will be a nested view -->
