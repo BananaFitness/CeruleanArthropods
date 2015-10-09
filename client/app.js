@@ -17,21 +17,15 @@ var app = angular.module('eir', [
 
 app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $stateProvider
-    // contains nav bars, link to other views in primary view
-    .state('index', {
-      url: '/',
-      templateUrl: '/index.html',
-      controller: 'AppController'
-    })
-    // contains homepage view, globe, patients link view, get funded link view
+
+  // contains homepage view, globe, patients link view, get funded link view
     .state('home', {
-      url: '/home',
+      url: '/',
       templateUrl: 'home/home.html',
-      controller: 'AppController'
     })
     // has the patient view (lined to from patients linked view, replaces primary view)
     .state('patients', {
-      url: '/patients/',
+      url: '/patients',
       templateUrl: '/patients/patients.html',
       controller: 'patientsCtrl'
     })
@@ -68,28 +62,26 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
       url: '/jwt',
       templateUrl: '/auth/signup.html',
       controller: 'tokenCtrl'
-    })
-    .otherwise({
-      redirectTo: '/'
     });
+
+  $urlRouterProvider.otherwise('/');
 
   // Use interceptor to use AttachTokens factory to add token to outgoing requests
   $httpProvider.interceptors.push('AttachTokens');
 })
 
 .config(['$httpProvider', function($httpProvider) {
-    $httpProvider.defaults.useXDomain = true;
-    $httpProvider.defaults.withCredentials = true;
-    delete $httpProvider.defaults.headers.common["X-Requested-With"];
-    $httpProvider.defaults.headers.common["Accept"] = "application/json";
-    $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
-   }
-])
+  $httpProvider.defaults.useXDomain = true;
+  $httpProvider.defaults.withCredentials = true;
+  delete $httpProvider.defaults.headers.common["X-Requested-With"];
+  $httpProvider.defaults.headers.common["Accept"] = "application/json";
+  $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
+}])
 
-.factory('AttachTokens', function ($window, $location, $q) {
-  var request = function (reqObject) {
+.factory('AttachTokens', function($window, $location, $q) {
+  var request = function(reqObject) {
     var jwt = $window.localStorage.getItem('com.eir');
-    if( jwt ) {
+    if (jwt) {
       reqObject.headers['x-access-token'] = jwt;
     }
     reqObject.headers['Allow-Control-Allow-Origin'] = '*';
@@ -97,44 +89,44 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   };
 
   var responseError = function(response) {
-        if(response.status === 401 || response.status === 403) {
-            $location.path('/signin');
-        }
-        return $q.reject(response);
+    if (response.status === 401 || response.status === 403) {
+      $location.path('/signin');
+    }
+    return $q.reject(response);
   };
 
   return {
     request: request,
-    responseError : responseError
+    responseError: responseError
   };
 })
 
 app.controller('AppController', function($scope, $location, $anchorScroll, appFactory, parallaxHelper) {
-  $scope.background = parallaxHelper.createAnimator(-0.3);
+    $scope.background = parallaxHelper.createAnimator(-0.3);
 
-  $scope.loginStatus = false;
+    $scope.loginStatus = false;
 
-  $scope.getStatus = function() {
-    $scope.loginStatus = appFactory.getLoginStatus();
-  }
+    $scope.getStatus = function() {
+      $scope.loginStatus = appFactory.getLoginStatus();
+    }
 
-  $scope.scrollTo = function(id) {
-    $location.hash(id);
-    $anchorScroll();
-  }
+    $scope.scrollTo = function(id) {
+      $location.hash(id);
+      $anchorScroll();
+    }
 
-  $scope.getStatus();
-  
-})
-// Heavily inspired by http://plnkr.co/edit/JLRta7?p=preview
+    $scope.getStatus();
+
+  })
+  // Heavily inspired by http://plnkr.co/edit/JLRta7?p=preview
 app.directive('planetary', function() {
   return {
     restrict: 'A',
     scope: {
       data: '='
-    }, 
-    link: function (scope, element, attrs) {
-      var autorotate = function (degPerSec) {
+    },
+    link: function(scope, element, attrs) {
+      var autorotate = function(degPerSec) {
         return function(planet) {
           var lastTick = null;
           planet.onDraw(function() {
@@ -151,14 +143,24 @@ app.directive('planetary', function() {
       var planet = planetaryjs.planet();
 
       planet.loadPlugin(planetaryjs.plugins.earth({
-        topojson: { file:   '/world-110m.json' },
-        oceans:   { fill:   '#4B566B' },
-        land:     { fill:   '#B2CCFF' },
-        borders:  { stroke: '#4B566B' }
+        topojson: {
+          file: '/world-110m.json'
+        },
+        oceans: {
+          fill: '#4B566B'
+        },
+        land: {
+          fill: '#B2CCFF'
+        },
+        borders: {
+          stroke: '#4B566B'
+        }
       }));
 
       planetaryjs.plugins.pings({
-        color: 'red', ttl: 5000, angle: 10
+        color: 'red',
+        ttl: 5000,
+        angle: 10
       });
 
       planet.loadPlugin(planetaryjs.plugins.zoom({
@@ -185,9 +187,9 @@ app.directive('planetary', function() {
   }
 })
 
-app.run(function ($rootScope, $location, authFactory) {
-  $rootScope.$on('$routeChangeStart', function (evt, next, current) {
-    if( next.$$route && next.$$route.authenticate && !authFactory.isAuth() ) {
+app.run(function($rootScope, $location, authFactory) {
+  $rootScope.$on('$routeChangeStart', function(evt, next, current) {
+    if (next.$$route && next.$$route.authenticate && !authFactory.isAuth()) {
       $location.path('/login');
     }
   });

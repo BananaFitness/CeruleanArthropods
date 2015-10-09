@@ -4,7 +4,7 @@ angular.module('eir.patients', [])
 
   $scope.patients;
 
-  $scope.go = function(id) {
+  $scope.go = function(id) { // change this for state provider and nganimate if want
     $location.path('/donate/' + id);
   };
 

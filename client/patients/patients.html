@@ -8,6 +8,9 @@
 
   <div class="row">
     <div class="col-md-3 col-md-offset-1 patient" ng-repeat="patient in patients">
+    
+    <!-- found solution for this link button, will put in tomorrow morning -->
+
       <div ng-click="go(patient.id)">
         <h2 class="text-center">{{ patient.first_name }} {{ patient.last_name }}</h2>
         <img class="img-responsive center-block img-thumbnail" ng-src="{{ patient.photo_url }}" alt="">
