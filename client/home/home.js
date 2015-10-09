@@ -2,16 +2,16 @@ var home = angular.module('eir.home', [
   'ui.bootstrap'
   ])
 
-home.controller('homeCtrl', function($scope, conditionFactory) {
+home.controller('homeCtrl', function($scope, patientsFactory) {
 
   $scope.pings;
 
   $scope.getLocations = function() {
-    $scope.pings = conditionFactory.getConditions()
-      // .then(function(conditions) {
-      //   console.log(conditions)
-      //   $scope.pings = conditions
-      // })
+    patientsFactory.getPatients()
+      .then(function(conditions) {
+        console.log(conditions)
+        $scope.pings = conditions
+      })
   }
   
   $scope.getLocations()
