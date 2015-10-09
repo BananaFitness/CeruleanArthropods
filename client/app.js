@@ -9,9 +9,10 @@ var app = angular.module('eir', [
   'eir.thankYou',
   'eir.auth',
   'eir.token',
-  'ngRoute',
+  'ui.router',
   'angularPayments',
-  'duParallax'
+  'duParallax',
+  'ui.bootstrap'
 ]);
 
 app.config(function($routeProvider, $httpProvider) {
