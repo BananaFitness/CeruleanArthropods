@@ -1,4 +1,12 @@
 <div ng-controller='profileCtrl'>
+  <style>
+    .st-sort-ascent:before{
+    content: '\25B2';
+  }
+  .st-sort-descent:before{
+    content: '\25BC';
+  }
+  </style>
   <div class='container'>
     <div class='profile-container'>
       <img class='profile-background profile-img' ng-src="{{currentUser.photo}}" alt="Description"/>
@@ -9,12 +17,35 @@
           <a href="#/home" ng-controller="authCtrl" ng-click="signout()">Logout</a></h5>
       </div>
     </div>
-    <ul>
-      <li class="product" ng-repeat="donation in currentUser.donations">
-        <img class='profile-background profile-img' ng-src="{{donation.image}}" alt="Description"/>
-        <a id='name'>{{donation.name}}</a>
-        <span id='amount'>{{donation.amount}}</span>
-      </li>
-    </ul>
+
+    <div class = "donations-table">
+      <table st-table="rowCollection" class="table table-striped">
+        <thead>
+        <tr>
+          <th st-sort="dontationDate">Date of Donation</th>
+          <th st-sort="patient">Patient</th>
+          <th st-sort="condition">Condition</th>
+          <th st-sort="amount">Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rowCollection">
+          <td>{{row.donationDate | date:"MM/dd/yy"}}</td>
+          <td>{{row.patient}}</td>
+          <td>{{row.condition}}</td>
+          <td>{{row.amount | currency}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class = "piechart">
+      <nvd3 options='optionsPie' data='dataPie'></nvd3>
+    </div>
+    
+    <div class= "bargraph">
+      <nvd3 options='optionsBar' data='dataBar'></nvd3>
+    </div>
+
   </div>
 </div>

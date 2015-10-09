@@ -10,7 +10,9 @@ var app = angular.module('eir', [
   'eir.auth',
   'eir.token',
   'ui.router',
-  'angularPayments'
+  'angularPayments',
+  'smart-table',
+  'nvd3'
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -99,7 +101,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     request: request,
     responseError: responseError
   };
-})
+});
 
 app.controller('AppController', function($scope, $location, $anchorScroll, appFactory) {
 
