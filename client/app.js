@@ -10,7 +10,10 @@ var app = angular.module('eir', [
   'eir.auth',
   'eir.token',
   'ui.router',
-  'angularPayments'
+  'ngRoute',
+  'angularPayments',
+  'smart-table',
+  'nvd3'
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {

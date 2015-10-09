@@ -16,8 +16,9 @@ module.exports.signup = function (req, res) {
     if (err) {
       res.status(404).send('Error: signup failed. ' + err);
     } else {
-      var token = jwt.encode(user, secret);
-      res.json({token: token});
+      //var token = jwt.sign(jwtTokenBody, secret, { expiresIn: 60*60*5 });
+      //res.redirect('/#/jwt?token=' + token);
+      res.end();
     }
   });
 };
