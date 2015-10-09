@@ -1,4 +1,4 @@
-angular.module('eir.donate', ['ngRoute', 'ui.bootstrap'])
+angular.module('eir.donate', [])
 
 .controller('donateCtrl', function($scope, patientsFactory, donorsFactory, $routeParams, conditionFactory) {
   $scope.patient = {};
