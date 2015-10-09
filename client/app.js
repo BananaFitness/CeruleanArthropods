@@ -41,9 +41,10 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
       controller: 'donateCtrl'
     })
     // load the charge form as child view
-    .state('charge', {
+    .state('donate.charge', {
+      // parent: 'donate',
       url: '/charge',
-      templateUrl: '/donate/charge.html', //rename this
+      templateUrl: '/donate/donate.charge.html', //rename this
       controller: 'donateCtrl'
     })
     // has signin view that replaces primary view
