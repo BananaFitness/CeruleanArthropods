@@ -15,38 +15,62 @@ var app = angular.module('eir', [
   'ui.bootstrap'
 ]);
 
-app.config(function($routeProvider, $httpProvider) {
-  $routeProvider
-    .when('/home', {
+app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+  $stateProvider
+    // contains nav bars, link to other views in primary view
+    .state('index', {
+      url: '/',
       templateUrl: '/index.html',
       controller: 'AppController'
     })
-    .when('/patients', {
+    // contains homepage view, globe, patients link view, get funded link view
+    .state('home', {
+      url: '/home',
+      templateUrl: '/home.html',
+      controller: 'AppController'
+    })
+    // has the patient view (lined to from patients linked view, replaces primary view)
+    .state('patients', {
+      url: '/patients/',
       templateUrl: '/patients/patients.html',
       controller: 'patientsCtrl'
     })
-    .when('/profile', {
+    // has the profile view (linked to from navbar)
+    .state('profile', {
+      url: '/profile',
       templateUrl: '/profile/profile.html',
       controller: 'profileCtrl'
     })
-    .when('/donate/:id', {
+    // has the donation view for specific patient (loads in page under patient view)
+    .state('donate', {
+      url: '/donate/:id',
       templateUrl: '/donate/donate.html',
       controller: 'donateCtrl'
     })
-    .when('/signin', {
+    // load the charge form as child view
+    .state('charge', {
+      url: '/charge',
+      templateUrl: '/donate/donate.html', //rename this
+      controller: 'donateCtrl'
+    })
+    // has signin view that replaces primary view
+    .state('signin', {
+      url: '/signin',
       templateUrl: '/auth/signin.html',
       controller: 'authCtrl'
     })
-    .when('/signup', {
+    .state('signup', {
+      url: '/signup',
       templateUrl: '/auth/signup.html',
       controller: 'authCtrl'
     })
-    .when('/jwt', {
+    .state('jwt', {
+      url: '/jwt',
       templateUrl: '/auth/signup.html',
       controller: 'tokenCtrl'
     })
     .otherwise({
-      redirectTo: '/home'
+      redirectTo: '/'
     });
 
   // Use interceptor to use AttachTokens factory to add token to outgoing requests
