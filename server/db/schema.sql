@@ -47,9 +47,9 @@ CREATE TABLE IF NOT EXISTS tbl_users (
 CREATE TABLE IF NOT EXISTS tbl_donations (
   id INT(20) AUTO_INCREMENT NOT NULL PRIMARY KEY,
   amount INT(20) NOT NULL,
-  donor_first_name VARCHAR(70) NOT NULL,
-  donor_last_name VARCHAR(70) NOT NULL,
-  donor_email VARCHAR(70) NOT NULL,
-  patient_id INT(11) NOT NULL
+  patient_id INT(11) NOT NULL,
+  donor_id INT(11) NOT NULL,
+  FOREIGN KEY (donor_id) REFERENCES tbl_users(id),
+  FOREIGN KEY (patient_id) REFERENCES tbl_patients(id)
 );
 

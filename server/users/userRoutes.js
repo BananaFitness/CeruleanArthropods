@@ -4,4 +4,5 @@ module.exports = function (router) {
   // Routes to specific controller methods
   router.post('/signup', userController.signup);
   router.get('/signedin', userController.checkAuth);
+  router.get('/me', userController.getCurrentUser)
 };
