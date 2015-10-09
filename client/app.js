@@ -112,7 +112,8 @@ app.controller('AppController', function($scope, $location, $anchorScroll, appFa
     }
 
     $scope.scrollTo = function(id) {
-      $location.hash(id);
+      $location.path('/')
+      // $location.hash(id);
       $anchorScroll();
     }
 

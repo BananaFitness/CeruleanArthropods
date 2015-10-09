@@ -1,19 +1,17 @@
 var home = angular.module('eir.home', [
-  'duParallax',
   'ui.bootstrap'
   ])
 
-home.controller('homeCtrl', function($scope, parallaxHelper, conditionFactory) {
-  $scope.background = parallaxHelper.createAnimator(-0.3);
+home.controller('homeCtrl', function($scope, conditionFactory) {
 
   $scope.pings;
 
   $scope.getLocations = function() {
-    conditionFactory.getConditions()
-      .then(function(conditions) {
-        console.log(conditions)
-        $scope.pings = conditions
-      })
+    $scope.pings = conditionFactory.getConditions()
+      // .then(function(conditions) {
+      //   console.log(conditions)
+      //   $scope.pings = conditions
+      // })
   }
   
   $scope.getLocations()

@@ -1,51 +1,63 @@
 <div ng-controller='profileCtrl'>
-  <style>
-    .st-sort-ascent:before{
-    content: '\25B2';
-  }
-  .st-sort-descent:before{
-    content: '\25BC';
-  }
-  </style>
-  <div class='container'>
-    <div class='profile-container'>
-      <img class='profile-background profile-img' ng-src="{{currentUser.photo}}" alt="Description"/>
-      <div class='user-info'>
-        <h1>Welcome, {{currentUser.firstName}}! </h1>
-          <h4> You have been giving since 2015.</h4>  
-          <h5> {{currentUser.location}} | username: {{currentUser.username}} | 
-          <a href="#/home" ng-controller="authCtrl" ng-click="signout()">Logout</a></h5>
+  <div class="container-fluid">
+    <nav role='navigation' class="navbar navbar-default small navbar-fixed-top" style="padding-right:25px">
+      <div class="navbar-header">
+        <a ng-href='/' class="navbar-brand" style="font-size:300%;">EIR</a>
       </div>
-    </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a ng-href='/patients'>PATIENT GIVING OPPORTUNITIES</a></li>
+        <!-- Scrolls to the funding section -->
+        <li><a ng-href='/logout'>LOGOUT</a></li>
+      </ul>
+    </nav>
+    <style>
+      .st-sort-ascent:before{
+      content: '\25B2';
+    }
+    .st-sort-descent:before{
+      content: '\25BC';
+    }
+    </style>
+    <div class='container'>
+      <div class='profile-container'>
+        <img class='profile-background profile-img' ng-src="{{currentUser.photo}}" alt="Description"/>
+        <div class='user-info'>
+          <h1>Welcome, {{currentUser.firstName}}! </h1>
+            <h4> You have been giving since 2015.</h4>  
+            <h5> {{currentUser.location}} | username: {{currentUser.username}} | 
+            <a href="#/home" ng-controller="authCtrl" ng-click="signout()">Logout</a></h5>
+        </div>
+      </div>
 
-    <div class = "donations-table">
-      <table st-table="rowCollection" class="table table-striped">
-        <thead>
-        <tr>
-          <th st-sort="dontationDate">Date of Donation</th>
-          <th st-sort="patient">Patient</th>
-          <th st-sort="condition">Condition</th>
-          <th st-sort="amount">Amount</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="row in rowCollection">
-          <td>{{row.donationDate | date:"MM/dd/yy"}}</td>
-          <td>{{row.patient}}</td>
-          <td>{{row.condition}}</td>
-          <td>{{row.amount | currency}}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+      <div class = "donations-table">
+        <table st-table="rowCollection" class="table table-striped">
+          <thead>
+          <tr>
+            <th st-sort="dontationDate">Date of Donation</th>
+            <th st-sort="patient">Patient</th>
+            <th st-sort="condition">Condition</th>
+            <th st-sort="amount">Amount</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="row in rowCollection">
+            <td>{{row.donationDate | date:"MM/dd/yy"}}</td>
+            <td>{{row.patient}}</td>
+            <td>{{row.condition}}</td>
+            <td>{{row.amount | currency}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
 
-    <div class = "piechart">
-      <nvd3 options='optionsPie' data='dataPie'></nvd3>
-    </div>
-    
-    <div class= "bargraph">
-      <nvd3 options='optionsBar' data='dataBar'></nvd3>
-    </div>
+      <div class = "piechart">
+        <nvd3 options='optionsPie' data='dataPie'></nvd3>
+      </div>
+      
+      <div class= "bargraph">
+        <nvd3 options='optionsBar' data='dataBar'></nvd3>
+      </div>
 
+    </div>
   </div>
 </div>
