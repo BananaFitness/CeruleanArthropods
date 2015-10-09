@@ -20,6 +20,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     .state('home', {
       url: '/',
       templateUrl: 'home/home.html',
+      controller: 'homeCtrl'
     })
     // has the patient view (lined to from patients linked view, replaces primary view)
     .state('patients', {

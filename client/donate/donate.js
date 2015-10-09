@@ -1,6 +1,6 @@
 angular.module('eir.donate', [])
 
-.controller('donateCtrl', function($scope, patientsFactory, donorsFactory, $routeParams, conditionFactory) {
+.controller('donateCtrl', function($scope, patientsFactory, donorsFactory, $stateParams, conditionFactory) {
   $scope.patient = {};
   $scope.donor = {};
   $scope.donated = false;
@@ -12,7 +12,7 @@ angular.module('eir.donate', [])
   // this will allow you to display patient info on the donate page
 
   $scope.getPatients = function() {
-    patientsFactory.getPatient($routeParams.id)
+    patientsFactory.getPatient($stateParams.id)
       .then(function(res) {
         $scope.patient = res[0];
         $scope.getConditionName();
@@ -70,7 +70,7 @@ angular.module('eir.donate', [])
 
   // on form submit, send the new donor info to the server; POST req
   $scope.handleSubmit = function(newDonor) {
-    newDonor.patient_id = $routeParams.id;
+    newDonor.patient_id = $stateParams.id;
 
     donorsFactory.submitDonationForm(newDonor)
       .then(function(res) {
