@@ -47,6 +47,8 @@ module.exports.checkAuth = function (req, res) {
 };
 
 module.exports.getCurrentUser = function (req, res) {
+  console.log(req.headers);
+  console.log(req.headers['x-access-token']);
   var token = req.headers['x-access-token'];
   if (!token) {
     res.sendStatus(404);
@@ -61,7 +63,7 @@ module.exports.getCurrentUser = function (req, res) {
           res.sendStatus(401);
         } else {
           var user = data[0];
-          var fullUserQuery = "SELECT * FROM tbl_donations JOIN tbl_patients ON tbl_donations.patient_id=tbl_patients.id WHERE tbl_donations.donor_id=?";
+          var fullUserQuery = "SELECT * FROM tbl_donations JOIN tbl_patients ON tbl_donations.patient_id=tbl_patients.id JOIN tbl_conditions ON tbl_patients.condition_id=tbl_conditions.id WHERE tbl_donations.donor_id=?";
           db.query(fullUserQuery, [user.id], function (err, data) {
             if (err) {
               res.status(404).send(err);
