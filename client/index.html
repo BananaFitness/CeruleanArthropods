@@ -38,12 +38,13 @@
         <a ui-sref="/" class="navbar-brand" style="font-size:300%;">EIR</a>
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a ng-click=scrollTo('discover')>DISCOVER EIR</a></li>
         <!-- Scrolls to the globe -->
-        <li><a ng-click=scrollTo('impact')>IMPACT</a></li>
+        <li><a ng-click=scrollTo('discover')>DISCOVER EIR</a></li>
         <!-- Scrolls to the stats -->
-        <li><a ng-click=scrollTo('patients')>PATIENTS</a></li>
+        <li><a ng-click=scrollTo('impact')>IMPACT</a></li>
         <!-- Scrolls to the feed -->
+        <li><a ng-click=scrollTo('patients')>PATIENTS</a></li>
+        <!-- Scrolls to the funding section -->
         <li><a ng-click=scrollTo('getFunded')>GET FUNDED</a></li>
         <li ng-switch on="loginStatus">
           <a ng-switch-when="false" ui-sref="signup">SIGN UP</a>
@@ -52,19 +53,26 @@
         </li>
       </ul>
     </nav>
-    
+
     <div ui-view></div>
 
-    <footer>
-      <div class="container">
-        <nav>
-          <a ui-sref="patients">PATIENTS</a>
-          <a ng-click=scrollTo('getFunded')>GET FUNDED</a> <!-- need route for thie -->
-          <a ng-click=scrollTo('discover')>ABOUT</a>  <!-- need route for this (or place in main)-->
-        </nav>
-        <h3>Created by Bananas!</h3>
-      </div>
-    </footer>
+    <footer class="container-fluid" role="navigation" style="background-color:white;">
+        <ul class="nav navbar-nav">
+        <!-- Scrolls to the globe -->
+        <li><a ng-click=scrollTo('discover')>DISCOVER EIR</a></li>
+        <!-- Scrolls to the stats -->
+        <li><a ng-click=scrollTo('impact')>IMPACT</a></li>
+        <!-- Scrolls to the feed -->
+        <li><a ng-click=scrollTo('patients')>PATIENTS</a></li>
+        <!-- Scrolls to the funding section -->
+        <li><a ng-click=scrollTo('getFunded')>GET FUNDED</a></li>
+        <li ng-switch on="loginStatus">
+          <a ng-switch-when="false" ui-sref="signup">SIGN UP</a>
+          <a ng-switch-when="false" ui-sref="signin">SIGN IN</a>
+          <a ng-switch-when="true" ui-sref="profile">PROFILE</a>
+        </li>
+        </ul>
+      </footer>
     <!-- Main app JS files -->
     <script src="services/factory.js"></script>
     <script src="home/home.js"></script>

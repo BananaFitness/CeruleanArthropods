@@ -1,6 +1,17 @@
 /**HOME PAGE**/
 
+.circle {
+  display: block;
+  height: 210px;
+  width: 210px;
+  line-height: 210px;
 
+  border-radius: 105px;
+
+  background-color: white;  
+  text-align: center;
+  opacity: 0.8;
+}
 
 .home-image {
     background-image: url("eir.JPG");
