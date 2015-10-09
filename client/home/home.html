@@ -1,73 +1,80 @@
-<!-- intro -->
-
-<section id="home" class='row' style="height: 500px; background-image:url(./photos/frontPhoto.jpg); background-size:cover">
+<!-- Home Section -->
+<section id="home" ng-controller='homeCtrl' class='row' 
+style="height: 500px; background-image:url(./photos/frontPhoto.jpg); background-size:cover">
   <div class='row heroRow' style='padding-top: 250px'>
     <h1 style='color: white; text-align: center'>You Might Not Be A Doctor But</h1>
     <h1 style='color: white; font-size:600%; text-align: center'>YOU CAN SAVE LIVES</h1>
   </div>
-  <!-- <div class='row learnMoreRow'>
-
-          <a href='#discover' class='learnmore scroll hidden-xs'>DISCOVER</a>
-          <br>
-          <a href="#discover" class='learnmore scroll'>
-            <i class='scroll-arrow fa fa-chevron-down animated infinite fadeInDown'>
-            </i>
-          </a>
-        </div> -->
 </section>
 
-<!-- Globe -->
-
+<!-- Discover Section -->
 <section id='discover' class='row' style="height: 500px; background-color: #F8F8F8; border-bottom: thin solid #E8E8E8">
   <div style='background-color: #F8F8F8; padding-top:50px; padding-left:50px;'>
     <canvas planetary width='800' height='400'></canvas>
   </div>
   <div class="col-md-4 col-md-offset-1">
-    <h4>Tip the Axis of Global Health</h4>
-    <!--           <p>
-            FillerFillerFillerFillerFillerFillerFillerFillerFillerFillerFillerFiller
+</section>
 
-          </p>
+<!-- Patients -->
+<section id='patients' class='row' style="height: 500px;padding-top:50px; padding-left: 100px; padding-bottom:50px;">
+  <div style="background-color: #F8F8F8; width: 700px; height:400px;">
+    <img src="../photos/primaryPatientPhoto.jpg" style="padding-top:25px; padding-left: 25px; padding-bottom:25px; width: 300px; height:400px;">
+  </div>
+  <!-- <button class="btn btn-primary" style='float:right;'>View Current Patients</button> -->
+</section>
 
+<!-- Impact -->
+<section id='impact' class='row' style="height: 500px; opacity: 0.6; background-image:url(../photos/parallax.jpg); background-size:cover">
+  <h1 style='color: white; text-align: left; padding-top:50px; padding-left:50px;'>
+    YOUR IMPACT
+  </h1>
+</section>
 
+<!-- Get Funded -->
+<section id='getFunded' class='row' style="height: 500px; background-color: #F8F8F8; border-bottom: thin solid #E8E8E8">
+  <div class="container col-md-6 col-md-offset-3">
+    <form name="patientForm" ng-submit="handleSubmit(patient)" enctype="multipart/form-data" class="css-form form-horizontal" novalidate>
+      <div class="form-group">    
+        <label class="control-label" for="First">First Name</label>
+        <input class="form-control" id="First" type="text" ng-model="patient.first_name" name="first_name" placeholder="First" required>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="Last">Last Name</label>
+        <input class="form-control" id="Last" type="text" ng-model="patient.last_name" name="last_name" placeholder="Last" required>
+      </div>
+      <div class="form-group" ng-class="{'has-error': patientForm.email.$error.inuse }">
+        <label class="control-label" for="Email">Email</label>
+        <input class="form-control" id="Email" type="email" ng-model="patient.email" name="email" placeholder="Email" required>
+        <div class="controls warning">
+          <div class="help-block" ng-show="patientForm.email.$error.inuse">Sorry this username is taken</div>
         </div>
-  </section>
-  <section id='patients' class='row' style="height: 500px;">
-  </section>
-  <section>
-    <div parallax-background parallax-ratio="0.2"> -->
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="Password">Password</label>
+        <input class="form-control" id="Password" type="password" ng-model="patient.password" name="password" placeholder="Password" required>
+      </div>
+      <div class="form-group">    
+        <label class="control-label" for="Condition">Condition</label>
+        <input class="form-control" id="Condition" type="text" ng-model="patient.condition" name="condition" placeholder="Condition" >
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="Photo">Photo</label>
+        <input onchange="angular.element(this).scope().uploadFile(this)" class="form-control" id="Photo" type="file" file-model="profilePic" ng-model="patient.photo" name="photo" placeholder="Photo Upload">
+      </div>
+      <div class="form-group">
+        <label for="Bio">Bio</label>
+        <textarea class="form-control" id="Bio" type="textarea" ng-model="patient.bio" name="bio" placeholder="Tell us about yourself..." required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="Goal">Goal</label>
+        <input class="form-control" id="Goal" type="number" ng-model="patient.goal" name="goal" placeholder="Goal" required>
+      </div>
+      
+      <div class="form-group col-md-4">
+        <input class="form-control btn btn-primary col-md-3" type="submit" value="submit">
+      </div>
+    </form>
   </div>
 </section>
 
-<!-- patient link view -->
-
-    </section>
-    <section id='patients' class='row' style="height: 500px;padding-top:50px; padding-left: 100px; padding-bottom:50px;">
-      <div style="background-color: #F8F8F8; width: 700px; height:400px;">
-        <img src="../photos/primaryPatientPhoto.jpg" style="padding-top:25px; padding-left: 25px; padding-bottom:25px; width: 300px; height:400px;">
-      </div>
-        
-      <!-- <div style="padding-top:240px; padding-right: 300px"> -->
-        <button ui-sref="patients" class="btn btn-primary" style='float:right;'>View Current Patients</button>
-      <!-- </div> -->
-    </section>
-
-
-
-<!-- patient form view needs to be under here -->
-
-      <section id='getFunded' class='row'>
-
-<!-- will add view here to link funding form -->
-
-    </section>
-
-    <section id='impact' style="height: 500px; background-color: #F8F8F8;">
-      <!-- <img src="../photos/parallax.jpg" du-parallax y="background" alt="" /> -->
-    </section>
-
-    <!-- Make this for featured patients -->
-      <div class="hero-unit" style="height: 500px; background-color: #F8F8F8; border-bottom: thin solid #E8E8E8">
-      </div>
-    </section>
 
