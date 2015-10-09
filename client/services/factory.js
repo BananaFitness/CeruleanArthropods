@@ -218,6 +218,7 @@ app.factory('conditionFactory', function ($http) {
       .catch(function(err) {
         console.log('ERROR getCondition: ' + err);
       });
+    
   };
   
   return {
