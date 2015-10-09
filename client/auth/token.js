@@ -1,8 +1,8 @@
 angular.module('eir.token', [])
 
-.controller('tokenCtrl', function ($scope, $location, $window, $routeParams) {
-  $scope.$on('$routeChangeSuccess', function(){
-    var token = $routeParams.token;
+.controller('tokenCtrl', function ($scope, $location, $window, $stateParams) {
+  $scope.$on('$stateChangeSuccess', function(){
+    var token = $stateParams.token;
     $window.localStorage.setItem('com.eir', token);
     $location.path('/');
   });
