@@ -26,7 +26,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     // contains homepage view, globe, patients link view, get funded link view
     .state('home', {
       url: '/home',
-      templateUrl: '/home.html',
+      templateUrl: 'home/home.html',
       controller: 'AppController'
     })
     // has the patient view (lined to from patients linked view, replaces primary view)
@@ -50,7 +50,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     // load the charge form as child view
     .state('charge', {
       url: '/charge',
-      templateUrl: '/donate/donate.html', //rename this
+      templateUrl: '/donate/charge.html', //rename this
       controller: 'donateCtrl'
     })
     // has signin view that replaces primary view
