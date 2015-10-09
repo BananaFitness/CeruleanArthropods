@@ -1,116 +1,137 @@
-<!-- Home Section -->
-<section id="home" ng-controller='homeCtrl' class='row' 
-style="height: 500px; background-image:url(./photos/frontPhoto.jpg); background-size:cover">
-  <div class='row heroRow' style='padding-top: 250px'>
-    <h1 style='color: white; text-align: center'>You Might Not Be A Doctor But</h1>
-    <h1 style='color: white; font-size:600%; text-align: center'>YOU CAN SAVE LIVES</h1>
-  </div>
-</section>
-
-<!-- Discover Section -->
-<section id='discover' class='row' style="height: 500px; background-color: #F8F8F8; border-bottom: thin solid #E8E8E8">
-  <div style='background-color: #F8F8F8; padding-top:50px; padding-left:50px;'>
-    <canvas planetary width='800' height='400'></canvas>
-  </div>
-  <div class="col-md-4 col-md-offset-1">
-</section>
-
-<!-- Patients -->
-
-<section id='patients' class='row' style="height: 500px;padding-top:50px; padding-left: 100px; padding-bottom:50px;">
-  <div style="background-color: #F8F8F8; width: 700px; height:400px;">
-    <span>
-      <p>Ahmed</p>
-      <p>Age 6</p>
-      <p>Islamabad, Pakistan</p>
-      <p>
-        “My mom says that I have a serious banana deficit. 
-        I try my hardest, but school is hard with a potassium deficiency. 
-        Please help me get the bananas I need."
-      </p> 
-    <img src="../photos/primaryPatientPhoto.jpg" style="padding-top:25px; padding-left: 25px; padding-bottom:25px; width: 300px; height:400px;">
-    </span>
-  </div>
-  <button ui-sref="patients"class="btn btn-primary" style='float:right; background-color: #4B566B;'>View Current Patients</button>
-
-</section>
-
-<!-- Impact -->
-<section id='impact' class='row' style="height: 500px; opacity: 0.7; background-image:url(/photos/parallax.jpg); background-attachment: fixed; background-size:cover">
-  <h1 class="textcenter sectiontitle" style='color: white; text-align: center; padding-top: 50px; font-size:400%;'>
-    YOUR IMPACT
-  </h1>
-  <div class="col-md-10 col-md-offset-1" style='padding-left:100px; padding-top:25px'>
-    <div class="col-md-4 textcenter" >
-      <div class="circle">
-        <h2 style="font-size:400%; padding-top:45px">1<h4>Child Saved Per Day</h4></h2>
-      </div>
+<div class="container-fluid">
+  <nav role='navigation' class="navbar navbar-default small navbar-fixed-top" style="padding-right:25px">
+    <div class="navbar-header">
+      <a ng-href='/' class="navbar-brand" style="font-size:300%;">EIR</a>
     </div>
-    <div class="col-md-4 textcenter" >
-      <div class="circle">
-        <h2 style="font-size:400%; padding-top:45px">10<h4>Regions Aided</h4></h2>
-      </div>
+    <ul class="nav navbar-nav navbar-right">
+      <!-- Scrolls to the globe -->
+      <li><a ng-click=scrollTo('discover')>DISCOVER EIR</a></li>
+      <!-- Scrolls to the stats -->
+      <li><a ng-click=scrollTo('impact')>IMPACT</a></li>
+      <!-- Scrolls to the feed -->
+      <li><a ng-click=scrollTo('patients')>PATIENTS</a></li>
+      <!-- Scrolls to the funding section -->
+      <li><a ng-click=scrollTo('getFunded')>GET FUNDED</a></li>
+      <li ng-switch on="loginStatus">
+        <a ng-switch-when="false" ui-sref="signup">SIGN UP</a>
+        <a ng-switch-when="false" ui-sref="signin">SIGN IN</a>
+        <a ng-switch-when="true" ui-sref="profile">PROFILE</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- Home Section -->
+  <section id="home" ng-controller='homeCtrl' class='row' 
+  style="height: 500px; background-image:url(./photos/frontPhoto.jpg); background-size:cover">
+    <div class='row heroRow' style='padding-top: 250px'>
+      <h1 style='color: white; text-align: center'>You Might Not Be A Doctor But</h1>
+      <h1 style='color: white; font-size:600%; text-align: center'>YOU CAN SAVE LIVES</h1>
     </div>
-    <div class="col-md-4 textcenter" >
-      <div class="circle">
-        <h2 style="font-size:400%; padding-top:45px">100<h4>Bananas Given Per Day</h4></h2>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- Get Funded -->
-<section id='getFunded' class='row' style="background-color: #F8F8F8; border-bottom: thin solid #E8E8E8">
-  <div class="container col-md-6 col-md-offset-3">
-    <h1 class="textcenter sectiontitle" style='color: #4B566B; text-align: center; font-size:400%;'>
-      GET FUNDING
+  <!-- Discover Section -->
+  <section id='discover' class='row' style="height: 500px; background-color: #F8F8F8; border-bottom: thin solid #E8E8E8">
+    <div style='background-color: #F8F8F8; padding-top:50px; padding-left:50px;'>
+      <canvas planetary width='800' height='400'></canvas>
+    </div>
+    <div class="col-md-4 col-md-offset-1">
+  </section>
+
+  <!-- Patients -->
+  <section id='patients' class='row' style="height: 500px;padding-top:50px; padding-left: 200px; padding-bottom:50px;">
+    <div class="col-md-8" style="background-color: #F8F8F8; height:400px;">
+      <ul style="display:inline;">
+        <li style="display:inline;">
+          <img src="../photos/primaryPatientPhoto.jpg" style="padding-top:25px; padding-bottom:25px; padding-left: 10px; width: 300px; height:400px; float:left">
+        </li>
+        <li style="display:inline;">
+          <h3 style='color: #4B566B;'>Ahmed</h3>
+          <h5 style='color: #4B566B;'>Age 6 | Islamabad, Pakistan</h5>
+          <p style='color: #4B566B; font-style:italic;'>
+            “My mom says that I have a serious banana deficit. 
+            I try my hardest, but school is hard with a potassium deficiency. 
+            Please help me get the bananas I need."
+          </p> 
+        </li>
+      </ul>
+    <button ui-sref="patients"class="btn btn-primary" style='float:right; background-color: #4B566B;'>View Current Patients</button>
+  </section>
+
+  <!-- Impact -->
+  <section id='impact' class='row' style="height: 500px; opacity: 0.7; background-image:url(/photos/parallax.jpg); background-attachment: fixed; background-size:cover">
+    <h1 class="textcenter sectiontitle" style='color: white; text-align: center; padding-top: 50px; font-size:400%;'>
+      YOUR IMPACT
     </h1>
-    <h3 class="textcenter sectiontitle" style='color: #4B566B; text-align: center;'>
-      As a 501(c) charity, we give opportunity for funding to those in need. 
-      Please fill out the form below, and we will contact you about becoming a part of Eir Health.
-    </h3  >
-    <form name="patientForm" ng-submit="handleSubmit(patient)" enctype="multipart/form-data" class="css-form form-horizontal" novalidate>
-      <div class="form-group" style='color: #4B566B;'>    
-        <label class="control-label" for="First">First Name</label>
-        <input class="form-control" id="First" type="text" ng-model="patient.first_name" name="first_name" placeholder="First" required>
-      </div>
-      <div class="form-group" style='color: #4B566B;'>
-        <label class="control-label" for="Last">Last Name</label>
-        <input class="form-control" id="Last" type="text" ng-model="patient.last_name" name="last_name" placeholder="Last" required>
-      </div>
-      <div class="form-group" ng-class="{'has-error': patientForm.email.$error.inuse }" style='color: #4B566B;'>
-        <label class="control-label" for="Email">Email</label>
-        <input class="form-control" id="Email" type="email" ng-model="patient.email" name="email" placeholder="Email" required>
-        <div class="controls warning">
-          <div class="help-block" ng-show="patientForm.email.$error.inuse">Sorry this username is taken</div>
+    <div class="col-md-10 col-md-offset-1" style='padding-left:100px; padding-top:25px'>
+      <div class="col-md-4 textcenter" >
+        <div class="circle">
+          <h2 style="font-size:400%; padding-top:45px">1<h4>Child Saved Per Day</h4></h2>
         </div>
       </div>
-      <div class="form-group" style='color: #4B566B;'>
-        <label class="control-label" for="Password">Password</label>
-        <input class="form-control" id="Password" type="password" ng-model="patient.password" name="password" placeholder="Password" required>
+      <div class="col-md-4 textcenter" >
+        <div class="circle">
+          <h2 style="font-size:400%; padding-top:45px">10<h4>Regions Aided</h4></h2>
+        </div>
       </div>
-      <div class="form-group" style='color: #4B566B;'>    
-        <label class="control-label" for="Condition">Condition</label>
-        <input class="form-control" id="Condition" type="text" ng-model="patient.condition" name="condition" placeholder="Condition" >
+      <div class="col-md-4 textcenter" >
+        <div class="circle">
+          <h2 style="font-size:400%; padding-top:45px">100<h4>Bananas Given Per Day</h4></h2>
+        </div>
       </div>
-      <div class="form-group" style='color: #4B566B;'>
-        <label class="control-label" for="Photo">Photo</label>
-        <input onchange="angular.element(this).scope().uploadFile(this)" class="form-control" id="Photo" type="file" file-model="profilePic" ng-model="patient.photo" name="photo" placeholder="Photo Upload">
-      </div>
-      <div class="form-group" style='color: #4B566B;'>
-        <label for="Bio">Bio</label>
-        <textarea class="form-control" id="Bio" type="textarea" ng-model="patient.bio" name="bio" placeholder="Tell us about yourself..." required></textarea>
-      </div>
-      <div class="form-group" style='color: #4B566B;'>
-        <label for="Goal">Goal</label>
-        <input class="form-control" id="Goal" type="number" ng-model="patient.goal" name="goal" placeholder="Goal" required>
-      </div>
-      
-      <div class="form-group col-md-4">
-        <input class="form-control btn btn-primary col-md-3" type="submit" value="submit" style='background-color: #4B566B;'>
-      </div>
-    </form>
-  </div>
-</section>
+    </div>
+  </section>
 
+  <!-- Get Funded -->
+  <section id='getFunded' class='row' style="background-color: #F8F8F8; border-bottom: thin solid #E8E8E8">
+    <div class="container col-md-6 col-md-offset-3">
+      <h1 class="textcenter sectiontitle" style='color: #4B566B; text-align: center; font-size:400%;'>
+        GET FUNDING
+      </h1>
+      <h3 class="textcenter sectiontitle" style='color: #4B566B; text-align: center;'>
+        As a 501(c) charity, we give opportunity for funding to those in need. 
+        Please fill out the form below, and we will contact you about becoming a part of Eir Health.
+      </h3  >
+      <form name="patientForm" ng-submit="handleSubmit(patient)" enctype="multipart/form-data" class="css-form form-horizontal" novalidate>
+        <div class="form-group" style='color: #4B566B;'>    
+          <label class="control-label" for="First">First Name</label>
+          <input class="form-control" id="First" type="text" ng-model="patient.first_name" name="first_name" placeholder="First" required>
+        </div>
+        <div class="form-group" style='color: #4B566B;'>
+          <label class="control-label" for="Last">Last Name</label>
+          <input class="form-control" id="Last" type="text" ng-model="patient.last_name" name="last_name" placeholder="Last" required>
+        </div>
+        <div class="form-group" ng-class="{'has-error': patientForm.email.$error.inuse }" style='color: #4B566B;'>
+          <label class="control-label" for="Email">Email</label>
+          <input class="form-control" id="Email" type="email" ng-model="patient.email" name="email" placeholder="Email" required>
+          <div class="controls warning">
+            <div class="help-block" ng-show="patientForm.email.$error.inuse">Sorry this username is taken</div>
+          </div>
+        </div>
+        <div class="form-group" style='color: #4B566B;'>
+          <label class="control-label" for="Password">Password</label>
+          <input class="form-control" id="Password" type="password" ng-model="patient.password" name="password" placeholder="Password" required>
+        </div>
+        <div class="form-group" style='color: #4B566B;'>    
+          <label class="control-label" for="Condition">Condition</label>
+          <input class="form-control" id="Condition" type="text" ng-model="patient.condition" name="condition" placeholder="Condition" >
+        </div>
+        <div class="form-group" style='color: #4B566B;'>
+          <label class="control-label" for="Photo">Photo</label>
+          <input onchange="angular.element(this).scope().uploadFile(this)" class="form-control" id="Photo" type="file" file-model="profilePic" ng-model="patient.photo" name="photo" placeholder="Photo Upload">
+        </div>
+        <div class="form-group" style='color: #4B566B;'>
+          <label for="Bio">Bio</label>
+          <textarea class="form-control" id="Bio" type="textarea" ng-model="patient.bio" name="bio" placeholder="Tell us about yourself..." required></textarea>
+        </div>
+        <div class="form-group" style='color: #4B566B;'>
+          <label for="Goal">Goal</label>
+          <input class="form-control" id="Goal" type="number" ng-model="patient.goal" name="goal" placeholder="Goal" required>
+        </div>
+        
+        <div class="form-group col-md-4">
+          <input class="form-control btn btn-primary col-md-3" type="submit" value="submit" style='background-color: #4B566B;'>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
 

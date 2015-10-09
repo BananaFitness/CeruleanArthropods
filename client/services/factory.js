@@ -211,6 +211,7 @@ app.factory('conditionFactory', function ($http) {
 
   // GET req; this will retrieve all the conditions from our db
   var getConditions = function() {
+    console.log('here')
     return $http.get('classes/conditions')
       .then(function(res) {
         return res.data;
@@ -218,10 +219,12 @@ app.factory('conditionFactory', function ($http) {
       .catch(function(err) {
         console.log('ERROR getCondition: ' + err);
       });
+    
   };
   
   return {
-    getCondition: getCondition
+    getCondition: getCondition,
+    getConditions: getConditions
   }
 });
 

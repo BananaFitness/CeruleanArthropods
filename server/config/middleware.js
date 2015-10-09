@@ -35,13 +35,15 @@ module.exports = function (app, express) {
   });
 
 //Routes traffic to their router and injects the router into its route file
-  app.use('/classes/patients', authHelpers.checkUser, patientRouter);
+  // app.use('/classes/patients', authHelpers.checkUser, patientRouter);
+  app.use('/classes/patients', patientRouter);
   require('../patients/patientRoutes')(patientRouter);
 
   app.use('/classes/donations', authHelpers.checkUser, donationRouter);
   require('../donations/donationRoutes')(donationRouter);
 
-  app.use('/classes/conditions', authHelpers.checkUser, conditionRouter);
+  app.use('/classes/conditions', conditionRouter);
+  // app.use('/classes/conditions', authHelpers.checkUser, conditionRouter);
   require('../conditions/conditionRoutes')(conditionRouter);
 
   app.use('/classes/users', userRouter);
