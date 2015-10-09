@@ -15,7 +15,7 @@ module.exports = function(router){
           }
 
           var name = user.username;
-          var provider = user.provider;
+          var provider = user.provider || 'local';
           console.log(provider, name);
 
           var jwtTokenBody = {
