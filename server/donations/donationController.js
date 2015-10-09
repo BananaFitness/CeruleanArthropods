@@ -9,26 +9,43 @@ module.exports.createDonation = function (req, res) {
   var amount = req.body.amount;
   var patientId = req.body.patient_id;
 
-  // Creates strings for 2 SQL queries: one to create a new donation and update the patient's progress
-  var queryDonation = 'INSERT INTO tbl_donations (amount, donor_first_name, donor_last_name, donor_email, patient_id) \
-                      VALUES (?, ?, ?, ?, ?)';
-  var queryPatient = 'UPDATE tbl_patients SET progress = progress + ? WHERE id = ?';
-
-  // Updates the patient's progress and if successful, creates a new donation. If that is successful,
-  // it sends back a 201. If errors at any point, it replies with a 404.
-  db.query(queryPatient, [amount, patientId], function (err, data) {
-    if( !err ) {
-      db.query(queryDonation, [amount, donorFirst, donorLast, email, patientId], function (err, data) {
-        if( !err ) {
-          res.status(201).send(data);
+  var token = req.headers['x-access-token'];
+  if( !token ) {
+    res.sendStatus(404);
+  } else {
+    var user = jwt.verify(token, secret);
+    var sqlquery = "SELECT * FROM tbl_users WHERE username =? AND provider =?";
+    db.query(sqlquery, [user.username, user.provider], function (err, data) {
+      if( err ) {
+        res.status(404).send(err);
+      } else {
+        if( data.length === 0 ) {
+          res.sendStatus(401);
         } else {
-          res.status(404).send(err);
+          var queriedUser = data[0];
+          // Creates strings for 2 SQL queries: one to create a new donation and update the patient's progress
+            var queryDonation = 'INSERT INTO tbl_donations (amount, patient_id, donor_id) VALUES (?, ?, ?)';
+            var queryPatient = 'UPDATE tbl_patients SET progress = progress + ? WHERE id = ?';
+
+            // Updates the patient's progress and if successful, creates a new donation. If that is successful,
+            // it sends back a 201. If errors at any point, it replies with a 404.
+            db.query(queryPatient, [amount, patientId], function (err, data) {
+              if( !err ) {
+                db.query(queryDonation, [amount, patientId, queriedUser.id], function (err, data) {
+                  if( !err ) {
+                    res.status(201).send(data);
+                  } else {
+                    res.status(404).send(err);
+                  }
+                });
+              } else {
+                res.status(404).send(err);
+              }
+            });
         }
-      });
-    } else {
-      res.status(404).send(err);
-    }
-  });
+      }
+    });
+  }
 }
 
 module.exports.getDonations = function (req, res) {

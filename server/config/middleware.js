@@ -44,7 +44,7 @@ module.exports = function (app, express) {
   app.use('/classes/conditions', conditionRouter);
   require('../conditions/conditionRoutes')(conditionRouter);
 
-  app.use('/classes/users', userRouter);
+  app.use('/classes/users', authHelpers.checkUser, userRouter);
   require('../users/userRoutes')(userRouter);
 
   app.use('/classes/stripe', stripeRouter);
