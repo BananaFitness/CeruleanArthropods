@@ -7,7 +7,6 @@ angular.module('eir.profile', [])
 
     $scope.currentUser = profileFactory.getProfileInfo();
 
-    // $scope.
       //This is for when we have the database sorted
       //profileFactory.getProfileInfo()
       // .then(function(userData) {

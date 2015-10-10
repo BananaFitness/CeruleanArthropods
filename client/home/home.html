@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-controller='homeCtrl'>
   <nav role='navigation' class="navbar navbar-default small navbar-fixed-top" style="padding-right:25px">
     <div class="navbar-header">
       <a ng-href='/' class="navbar-brand" style="font-size:300%;">EIR</a>
@@ -20,7 +20,7 @@
     </ul>
   </nav>
   <!-- Home Section -->
-  <section id="home" ng-controller='homeCtrl' class='row' 
+  <section id="home" class='row' 
   style="height: 500px; background-image:url(./photos/frontPhoto.jpg); background-size:cover">
     <div class='row heroRow' style='padding-top: 250px'>
       <h1 style='color: white; text-align: center'>You Might Not Be A Doctor But</h1>
@@ -30,10 +30,9 @@
 
   <!-- Discover Section -->
   <section id='discover' class='row' style="height: 500px; background-color: #F8F8F8; border-bottom: thin solid #E8E8E8">
-    <div style='background-color: #F8F8F8; padding-top:50px; padding-left:50px;'>
-      <canvas planetary width='800' height='400'></canvas>
+    <div class="col-md-4" style='background-color: #F8F8F8; padding-top:25px; padding-left:200px;'>
+      <canvas planetary width='900' height='450'></canvas>
     </div>
-    <div class="col-md-4 col-md-offset-1">
   </section>
 
   <!-- Patients -->
@@ -53,7 +52,7 @@
           </p> 
         </li>
       </ul>
-    <button ui-sref="patients"class="btn btn-primary" style='float:right; background-color: #4B566B;'>View Current Patients</button>
+    <button ui-sref="patients" class="btn btn-primary" style='background-color: #4B566B;'>View Current Patients</button>
   </section>
 
   <!-- Impact -->
