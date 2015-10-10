@@ -75,12 +75,22 @@ nav.navbar {
 }
 
 .patient-header {
-    background-image: url('eir.JPG');
+  line-height: inherit;
+    background-image: url('photos/parallax.jpg');
+    opacity: 0.8;
     background-position: center center;
     background-size: cover;
     height: 200px;
     margin-bottom: 2em;
     color: white;
+}
+
+#patient-title {
+  margin-top: 0px;
+  line-height: inherit;
+  vertical-align: middle;
+  font-size: 100px;
+  padding-left: 50px;
 }
 
 div.patient {
