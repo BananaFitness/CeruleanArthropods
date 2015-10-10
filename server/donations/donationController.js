@@ -50,7 +50,7 @@ module.exports.createDonation = function (req, res) {
 
 module.exports.getDonations = function (req, res) {
   // Returns all donations in the donation table
-  var queryStr = 'SELECT * FROM tbl_donations';
+  var queryStr = 'SELECT * FROM tbl_donations JOIN tbl_users ON tbl_donations.donor_id=tbl_users.id';
 
   db.query(queryStr, function (err, data) {
     if( !err ) {
