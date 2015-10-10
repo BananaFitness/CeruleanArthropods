@@ -1,20 +1,40 @@
-<header class="patient-header">
-  <div class="container">
-    <h1>Support a patient</h1>
-  </div>
+<nav role='navigation' class="navbar navbar-default small navbar-fixed-top" style="padding-right:25px">
+    <div class="navbar-header">
+      <a ng-href='/' class="navbar-brand" style="font-size:300%;">EIR</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <!-- Scrolls to the globe -->
+      <li><a ng-click=scrollTo('discover')>DISCOVER EIR</a></li>
+      <!-- Scrolls to the stats -->
+      <li><a ng-click=scrollTo('impact')>IMPACT</a></li>
+      <!-- Scrolls to the feed -->
+      <li><a ng-click=scrollTo('patients')>PATIENTS</a></li>
+      <!-- Scrolls to the funding section -->
+      <li><a ng-click=scrollTo('getFunded')>GET FUNDED</a></li>
+      <li ng-switch on="loginStatus">
+        <a ng-switch-when="false" ui-sref="signup">SIGN UP</a>
+        <a ng-switch-when="false" ui-sref="signin">SIGN IN</a>
+        <a ng-switch-when="true" ui-sref="profile">PROFILE</a>
+      </li>
+    </ul>
+  </nav>
+  <header class="patient-header">
+
+    <h1 id="patient-title">Support a patient</h1>
+
   
 </header>
 <div class="container patients-background">
 
-  <div class="row">
+  <div class="row" style="min-height: 635px">
     <div class="col-md-3 col-md-offset-1 patient" ng-repeat="patient in patients">
     
     <!-- found solution for this link button, will put in tomorrow morning -->
 
       <div ng-click="go(patient.id)">
         <h2 class="text-center">{{ patient.first_name }} {{ patient.last_name }}</h2>
-        <img class="img-responsive center-block img-thumbnail" ng-src="{{ patient.photo_url }}" alt="">
-        
+        <img class="img-responsive center-block img-thumbnail" ng-src="../photos/bulba.png" alt="">
+        <!-- {{ patient.photo_url }} goes in above -->
         <div>
           <p class="text-center bg-info">{{ patient.condition_name }}</p>
 

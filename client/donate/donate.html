@@ -1,13 +1,34 @@
 <!-- <header class="patient-header">
   <h1>{{ patient.first_name }} has a condition called {{ patient.condition_name }} and appreciates your donation {{ donor.amount > 0 ? 'of $' + donor.amount : '' }}</h1>
 </header> -->
+<nav role='navigation' class="navbar navbar-default small navbar-fixed-top" style="padding-right:25px">
+    <div class="navbar-header">
+      <a ng-href='/' class="navbar-brand" style="font-size:300%;">EIR</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <!-- Scrolls to the globe -->
+      <li><a ng-click=scrollTo('discover')>DISCOVER EIR</a></li>
+      <!-- Scrolls to the stats -->
+      <li><a ng-click=scrollTo('impact')>IMPACT</a></li>
+      <!-- Scrolls to the feed -->
+      <li><a ng-click=scrollTo('patients')>PATIENTS</a></li>
+      <!-- Scrolls to the funding section -->
+      <li><a ng-click=scrollTo('getFunded')>GET FUNDED</a></li>
+      <li ng-switch on="loginStatus">
+        <a ng-switch-when="false" ui-sref="signup">SIGN UP</a>
+        <a ng-switch-when="false" ui-sref="signin">SIGN IN</a>
+        <a ng-switch-when="true" ui-sref="profile">PROFILE</a>
+      </li>
+    </ul>
+  </nav>
 <div class="row" style="background-color: #E8E8E8">
   <div class="col-md-4">
     <section class="donate-box">
-      <img class="patient-photo" ng-src="{{patient.photo_url}}" width="400px" height="400px" style="margin: 50px; border-radius: 10px;">
+      <img class="patient-photo" ng-src="../photos/bulba.png" width="400px" height="400px" style="margin: 50px; border-radius: 10px;">
     </section>
+    <!-- {{patient.photo_url}} goes in above ng-src-->
   </div>
-  <div class="col-md-8">
+  <div class="col-md-4">
     <section class="more-about-patient">
       <h3>{{ patient.first_name }}'s Story</h3> {{ patient.bio }}
     </section>
@@ -15,7 +36,7 @@
 </div>
 <div class="row">
   <div class="col-md-6">
-    <section>
+    <section style="padding-left:250px; padding-top:50px;">
       <div class="patient-progress">
         <h4>{{thankYou}}</h4>
         <h3>${{ patient.progress }} raised, ${{ patient.goal }} to go</h3>
@@ -24,7 +45,8 @@
     </section>
   </div>
 <div class="col-md-6" style="height: 500px">
-  <a ui-sref="donate.charge">DONATE NOW!</a>
+<a ui-sref="donate.charge" style="font-size: 50px;
+padding-left:250px">DONATE NOW!</a>
   <div ui-view></div>
 </div>
 <!-- place button to link to charge and pass patient info over, note that this will be a nested view -->
