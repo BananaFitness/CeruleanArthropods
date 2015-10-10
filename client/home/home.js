@@ -9,17 +9,49 @@ home.controller('homeCtrl', function($scope, patientsFactory) {
   $scope.getLocations = function() {
     patientsFactory.getPatients()
       .then(function(conditions) {
-        console.log(conditions)
         $scope.pings = conditions
       })
   }
+
+  // $scope.options = {
+  //   plugins: {
+  //     autorotate: {
+  //       degree : 2
+  //     },
+  //     earth: {
+  //       topojson: { file:   'world-110m.json' },
+  //       oceans:   { fill:   '#4B566B' },            
+  //       land:     { fill:   '#B2CCFF' },
+  //       borders:  { stroke: '#4B566B' , lineWidth: 0.3}
+  //     },
+  //     pings: {
+  //       color: 'yellow', ttl: 5000, angle: 10
+  //     },
+  //     zoom: { scaleExtent: [100, 300] }
+  //   }
+  // }
+
+  // var toPing = $scope.pings
+
+  // for (var i = 0; i < toPing.length; i++) {
+  //   var ping = toPing[i];
+  //   planetaryjs.plugins.pings.add(ping.longitude, ping.latitude, {
+  //     color: 'red',
+  //     ttl: 5000,
+  //     angle: 10
+  //   });
+  // }
+
   
   $scope.getLocations()
 
 })
 
-  // Heavily inspired by http://plnkr.co/edit/JLRta7?p=preview
+
+
+
 home.directive('planetary', function() {
+  // Heavily inspired by http://plnkr.co/edit/JLRta7?p=preview
   return {
     restrict: 'A',
     scope: {
@@ -57,11 +89,16 @@ home.directive('planetary', function() {
         }
       }));
 
-      planetaryjs.plugins.pings({
-        color: 'red',
-        ttl: 5000,
-        angle: 10
-      });
+      // var toPing = $rootScope.pings
+
+      // for (var i = 0; i < toPing.length; i++) {
+      //   var ping = toPing[i];
+      //   planetaryjs.plugins.pings.add(ping.longitude, ping.latitude, {
+      //     color: 'red',
+      //     ttl: 5000,
+      //     angle: 10
+      //   });
+      // }
 
       planet.loadPlugin(planetaryjs.plugins.zoom({
         scaleExtent: [50, 2000]
